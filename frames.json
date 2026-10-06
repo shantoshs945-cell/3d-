@@ -1,0 +1,10 @@
+{
+  "count": 120,
+  "pattern": "assets/frames-webp/frame_{index}.webp",
+  "patternPng": "assets/frames/frame_{index}.png",
+  "width": 1280,
+  "height": 720,
+  "firstFrame": 1,
+  "lastFrame": 120,
+  "zeroPadding": 4
+}

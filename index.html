@@ -1,0 +1,657 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  <!-- SEO & Open Graph Meta Tags -->
+  <title>AURA CHAUFFEURS | Premium Car Rental & Chauffeur Services Mumbai</title>
+  <meta name="description" content="Elevated private mobility, luxury cab rentals, outstation tours, airport transfers, and corporate fleet services in Mumbai & Pan-India. Impeccable comfort and precision timing.">
+  <meta name="keywords" content="luxury car rental, chauffeur services, Mumbai cab travels, Mercedes rental, Innova Hycross rental, wedding car hire, outstation cab">
+  <meta property="og:title" content="AURA CHAUFFEURS | Luxury Private Mobility">
+  <meta property="og:description" content="Experience high-end chauffeur-driven journeys with our executive fleet.">
+  <meta property="og:type" content="website">
+  
+  <!-- Google Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,600;0,700;1,400&family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+  
+  <!-- Main Stylesheet -->
+  <link rel="stylesheet" href="css/style.css">
+  
+  <!-- FontAwesome Icons CDN -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+</head>
+<body>
+
+  <!-- Custom Cursor -->
+  <div class="custom-cursor-dot" id="cursor-dot"></div>
+  <div class="custom-cursor-ring" id="cursor-ring"></div>
+
+  <!-- Preloader Screen -->
+  <div class="preloader" id="preloader">
+    <div class="preloader-brand">AURA</div>
+    <div class="preloader-tagline">Chauffeurs & Private Mobility</div>
+    <div class="preloader-bar-container">
+      <div class="preloader-bar" id="preloader-bar"></div>
+    </div>
+    <div class="preloader-counter" id="preloader-counter">0%</div>
+  </div>
+
+  <!-- Navbar -->
+  <header class="navbar" id="navbar">
+    <a href="#" class="nav-brand">
+      <div class="nav-brand-logo">A</div>
+      <div class="nav-brand-text">
+        <span class="nav-brand-name">Aura</span>
+        <span class="nav-brand-sub">Chauffeurs</span>
+      </div>
+    </a>
+
+    <ul class="nav-links">
+      <li><a href="#about" class="nav-link">About</a></li>
+      <li><a href="#fleet" class="nav-link">The Fleet</a></li>
+      <li><a href="#services" class="nav-link">Services</a></li>
+      <li><a href="#packages" class="nav-link">Routes</a></li>
+      <li><a href="#how-it-works" class="nav-link">Process</a></li>
+      <li><a href="#reviews" class="nav-link">Reviews</a></li>
+    </ul>
+
+    <div class="nav-actions">
+      <a href="#booking" class="btn-nav" data-hover>
+        <span>Book Now</span>
+        <i class="fa-solid fa-arrow-right"></i>
+      </a>
+      <div class="hamburger-btn" id="hamburger-btn">
+        <span></span>
+        <span></span>
+        <span></span>
+      </div>
+    </div>
+  </header>
+
+  <!-- Mobile Menu Overlay -->
+  <div class="mobile-menu" id="mobile-menu">
+    <ul class="mobile-menu-links">
+      <li><a href="#about" class="mobile-menu-link">About Us</a></li>
+      <li><a href="#fleet" class="mobile-menu-link">The Fleet</a></li>
+      <li><a href="#services" class="mobile-menu-link">Services</a></li>
+      <li><a href="#packages" class="mobile-menu-link">Routes & Rates</a></li>
+      <li><a href="#how-it-works" class="mobile-menu-link">How It Works</a></li>
+      <li><a href="#booking" class="mobile-menu-link">Book Now</a></li>
+    </ul>
+  </div>
+
+  <!-- Main Scroll Wrapper -->
+  <main id="smooth-wrapper">
+    <div id="smooth-content">
+
+      <!-- HERO SECTION WITH CANVAS SCROLL SEQUENCE -->
+      <section class="hero-scroll-container" id="hero-scroll-container">
+        <div class="hero-sticky-viewport">
+          <canvas id="hero-canvas"></canvas>
+          <div class="hero-vignette-overlay"></div>
+          
+          <!-- Hero Text Overlays (Fades in/out on scroll) -->
+          <div class="hero-overlay-content">
+            
+            <!-- Step 1: Initial Reveal -->
+            <div class="hero-step active" id="hero-step-1">
+              <div class="hero-badge">Private Chauffeur Luxury</div>
+              <h1 class="hero-title-main">Redefining Executive <span>Travels</span></h1>
+              <p class="hero-subtitle">Experience bespoke chauffeur-driven journeys in India's finest executive fleet. Seamless, punctual, and uncompromisingly comfortable.</p>
+            </div>
+
+            <!-- Step 2: Safety & Comfort Focus -->
+            <div class="hero-step" id="hero-step-2">
+              <div class="hero-badge">Unmatched Excellence</div>
+              <h2 class="hero-title-main">First-Class <span>Comfort</span> & Safety</h2>
+              <p class="hero-subtitle">Rigorously vetted professional chauffeurs, sanitized climate-controlled cabins, and real-time flight tracking for total peace of mind.</p>
+            </div>
+
+            <!-- Step 3: Key Performance Stats -->
+            <div class="hero-step" id="hero-step-3">
+              <div class="hero-badge">Proven Track Record</div>
+              <h2 class="hero-title-main">Trusted By <span>Executives</span></h2>
+              <div class="hero-stats-grid">
+                <div>
+                  <div class="hero-stat-num">500K+</div>
+                  <div class="hero-stat-label">Smooth Kilometers</div>
+                </div>
+                <div>
+                  <div class="hero-stat-num">99.8%</div>
+                  <div class="hero-stat-label">On-Time Precision</div>
+                </div>
+                <div>
+                  <div class="hero-stat-num">4.9★</div>
+                  <div class="hero-stat-label">Executive Rating</div>
+                </div>
+              </div>
+            </div>
+
+            <!-- Step 4: Final Call To Action -->
+            <div class="hero-step" id="hero-step-4">
+              <div class="hero-badge">Ready When You Are</div>
+              <h2 class="hero-title-main">Your Destination <span>Awaits</span></h2>
+              <p class="hero-subtitle" style="margin-bottom: 1.5rem;">Reserve your luxury sedan, SUV, or MPV in seconds with instant confirmation.</p>
+              <a href="#booking" class="btn-nav" style="padding: 1rem 2.2rem; font-size: 0.95rem;" data-hover>
+                <span>Reserve Your Ride</span>
+                <i class="fa-solid fa-calendar-check"></i>
+              </a>
+            </div>
+
+          </div>
+
+          <!-- Scroll Indicator -->
+          <div class="scroll-indicator" id="scroll-indicator">
+            <span>Scroll To Explore</span>
+            <div class="scroll-mouse">
+              <div class="scroll-wheel"></div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- ABOUT SECTION -->
+      <section class="about-section" id="about">
+        <div class="about-grid">
+          <div class="about-content-left">
+            <div class="section-subhead">Why Choose Aura</div>
+            <h2 class="section-title" style="margin-bottom: 1.5rem;">Where Precision Meets Luxury Travel</h2>
+            <p class="about-text">Aura Chauffeurs was built for those who value time, discretion, and effortless comfort. Whether it's an urgent airport transfer at dawn or a multi-day outstation tour, our fleet delivers a sanctuary on wheels.</p>
+            
+            <div class="features-list">
+              <div class="feature-item">
+                <div class="feature-icon"><i class="fa-solid fa-user-tie"></i></div>
+                <div>
+                  <h3 class="feature-title">Vetted Professional Chauffeurs</h3>
+                  <p class="feature-desc">Uniformed, background-checked drivers trained in defensive driving and elite hospitality etiquette.</p>
+                </div>
+              </div>
+
+              <div class="feature-item">
+                <div class="feature-icon"><i class="fa-solid fa-shield-halved"></i></div>
+                <div>
+                  <h3 class="feature-title">Immaculate Cleanliness & Safety</h3>
+                  <p class="feature-desc">Deep-cleaned and sanitized vehicles equipped with complimentary water, Wi-Fi, and live GPS tracking.</p>
+                </div>
+              </div>
+
+              <div class="feature-item">
+                <div class="feature-icon"><i class="fa-solid fa-clock"></i></div>
+                <div>
+                  <h3 class="feature-title">Guaranteed On-Time Pickup</h3>
+                  <p class="feature-desc">We monitor flight schedules and traffic patterns to ensure your chauffeur is waiting before you arrive.</p>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <div class="about-stats-card">
+            <div>
+              <div class="counter-number" data-target="15000">0</div>
+              <div class="counter-label">Trips Completed</div>
+            </div>
+            <div>
+              <div class="counter-number" data-target="98">0</div>
+              <div class="counter-label">% Client Retention</div>
+            </div>
+            <div>
+              <div class="counter-number" data-target="45">0</div>
+              <div class="counter-label">Luxury Vehicles</div>
+            </div>
+            <div>
+              <div class="counter-number" data-target="24">0</div>
+              <div class="counter-label">/ 7 Concierge</div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- FLEET SECTION (HORIZONTAL PINNED SCROLL) -->
+      <section class="fleet-outer" id="fleet">
+        <div class="section-header center">
+          <div class="section-subhead center">Our World-Class Fleet</div>
+          <h2 class="section-title">Tailored Mobility For Every Journey</h2>
+          <p style="margin-top: 0.8rem;">Explore our meticulously maintained range of luxury sedans, premium SUVs, and executive MPVs.</p>
+        </div>
+
+        <div class="fleet-horizontal-container">
+          <div class="fleet-horizontal-wrapper" id="fleet-wrapper">
+
+            <!-- Vehicle 1: Executive Sedan -->
+            <div class="fleet-card" data-tilt>
+              <div class="fleet-img-wrapper">
+                <img src="assets/images/fleet_sedan.jpg" alt="Executive Sedan Mercedes-Benz E-Class" loading="lazy">
+                <span class="fleet-badge">Executive Sedan</span>
+              </div>
+              <div class="fleet-info">
+                <h3 class="fleet-name">Mercedes-Benz E-Class</h3>
+                <div class="fleet-specs">
+                  <span class="fleet-spec-item"><i class="fa-solid fa-user"></i> 4 Seats</span>
+                  <span class="fleet-spec-item"><i class="fa-solid fa-suitcase"></i> 3 Bags</span>
+                  <span class="fleet-spec-item"><i class="fa-solid fa-snowflake"></i> Climate Control</span>
+                </div>
+                <div class="fleet-price-row">
+                  <div class="fleet-price">₹28 <span>/ km</span></div>
+                  <a href="#booking" class="btn-book-sm" data-vehicle="Mercedes-Benz E-Class">Reserve</a>
+                </div>
+              </div>
+            </div>
+
+            <!-- Vehicle 2: Premium SUV -->
+            <div class="fleet-card" data-tilt>
+              <div class="fleet-img-wrapper">
+                <img src="assets/images/fleet_suv.jpg" alt="Range Rover Luxury SUV" loading="lazy">
+                <span class="fleet-badge">Luxury SUV</span>
+              </div>
+              <div class="fleet-info">
+                <h3 class="fleet-name">Range Rover Autobiography</h3>
+                <div class="fleet-specs">
+                  <span class="fleet-spec-item"><i class="fa-solid fa-user"></i> 5 Seats</span>
+                  <span class="fleet-spec-item"><i class="fa-solid fa-suitcase"></i> 4 Bags</span>
+                  <span class="fleet-spec-item"><i class="fa-solid fa-road"></i> AWD All-Terrain</span>
+                </div>
+                <div class="fleet-price-row">
+                  <div class="fleet-price">₹45 <span>/ km</span></div>
+                  <a href="#booking" class="btn-book-sm" data-vehicle="Range Rover SUV">Reserve</a>
+                </div>
+              </div>
+            </div>
+
+            <!-- Vehicle 3: Innova Hycross -->
+            <div class="fleet-card" data-tilt>
+              <div class="fleet-img-wrapper">
+                <img src="assets/images/fleet_innova.jpg" alt="Toyota Innova Hycross MPV" loading="lazy">
+                <span class="fleet-badge">Executive MPV</span>
+              </div>
+              <div class="fleet-info">
+                <h3 class="fleet-name">Toyota Innova Hycross</h3>
+                <div class="fleet-specs">
+                  <span class="fleet-spec-item"><i class="fa-solid fa-user"></i> 7 Seats</span>
+                  <span class="fleet-spec-item"><i class="fa-solid fa-suitcase"></i> 5 Bags</span>
+                  <span class="fleet-spec-item"><i class="fa-solid fa-couch"></i> Ottoman Seats</span>
+                </div>
+                <div class="fleet-price-row">
+                  <div class="fleet-price">₹22 <span>/ km</span></div>
+                  <a href="#booking" class="btn-book-sm" data-vehicle="Toyota Innova Hycross">Reserve</a>
+                </div>
+              </div>
+            </div>
+
+            <!-- Vehicle 4: Luxury Class Rolls-Royce -->
+            <div class="fleet-card" data-tilt>
+              <div class="fleet-img-wrapper">
+                <img src="assets/images/fleet_luxury.jpg" alt="Rolls-Royce Ghost Limousine" loading="lazy">
+                <span class="fleet-badge">Presidential Class</span>
+              </div>
+              <div class="fleet-info">
+                <h3 class="fleet-name">Rolls-Royce Ghost</h3>
+                <div class="fleet-specs">
+                  <span class="fleet-spec-item"><i class="fa-solid fa-user"></i> 4 Seats</span>
+                  <span class="fleet-spec-item"><i class="fa-solid fa-champagne-glasses"></i> VIP Bar</span>
+                  <span class="fleet-spec-item"><i class="fa-solid fa-star"></i> Starlight Headliner</span>
+                </div>
+                <div class="fleet-price-row">
+                  <div class="fleet-price">₹120 <span>/ km</span></div>
+                  <a href="#booking" class="btn-book-sm" data-vehicle="Rolls-Royce Ghost">Reserve</a>
+                </div>
+              </div>
+            </div>
+
+            <!-- Vehicle 5: Luxury Tempo Traveller -->
+            <div class="fleet-card" data-tilt>
+              <div class="fleet-img-wrapper">
+                <img src="assets/images/fleet_tempo.jpg" alt="Luxury Tempo Traveller" loading="lazy">
+                <span class="fleet-badge">Executive Minibus</span>
+              </div>
+              <div class="fleet-info">
+                <h3 class="fleet-name">Luxury Tempo Traveller</h3>
+                <div class="fleet-specs">
+                  <span class="fleet-spec-item"><i class="fa-solid fa-user"></i> 12-16 Seats</span>
+                  <span class="fleet-spec-item"><i class="fa-solid fa-suitcase"></i> 10 Bags</span>
+                  <span class="fleet-spec-item"><i class="fa-solid fa-tv"></i> Smart TV & Wi-Fi</span>
+                </div>
+                <div class="fleet-price-row">
+                  <div class="fleet-price">₹35 <span>/ km</span></div>
+                  <a href="#booking" class="btn-book-sm" data-vehicle="Luxury Tempo Traveller">Reserve</a>
+                </div>
+              </div>
+            </div>
+
+          </div>
+        </div>
+      </section>
+
+      <!-- SERVICES SECTION -->
+      <section class="services-section" id="services">
+        <div class="section-header">
+          <div class="section-subhead">Services Offered</div>
+          <h2 class="section-title">Comprehensive Chauffeur Solutions</h2>
+        </div>
+
+        <div class="services-grid">
+          <div class="service-card">
+            <div class="service-num">01</div>
+            <h3 class="service-title">Airport VIP Transfers</h3>
+            <p class="service-desc">Flight monitoring, meet & greet service at arrivals terminal, luggage assistance, and zero-wait transfers to your hotel or residence.</p>
+          </div>
+
+          <div class="service-card">
+            <div class="service-num">02</div>
+            <h3 class="service-title">Outstation Journeys</h3>
+            <p class="service-desc">Smooth inter-city travels to Pune, Lonavala, Goa, Mahabaleshwar, Nashik, and beyond with experienced highway drivers.</p>
+          </div>
+
+          <div class="service-card">
+            <div class="service-num">03</div>
+            <h3 class="service-title">Wedding Chauffeurs</h3>
+            <p class="service-desc">Grand entry luxury cars decorated with floral arrangements for brides, grooms, and VIP family guest transportation fleets.</p>
+          </div>
+
+          <div class="service-card">
+            <div class="service-num">04</div>
+            <h3 class="service-title">Corporate Fleet Accounts</h3>
+            <p class="service-desc">Dedicated corporate travel desk, monthly billing options, executive roadshows, and priority dispatch for delegates.</p>
+          </div>
+
+          <div class="service-card">
+            <div class="service-num">05</div>
+            <h3 class="service-title">Bespoke Sightseeing</h3>
+            <p class="service-desc">Curated city tours, heritage architectural drives, and shopping itineraries with knowledgeable local chauffeurs.</p>
+          </div>
+
+          <div class="service-card">
+            <div class="service-num">06</div>
+            <h3 class="service-title">Pilgrimage & Heritage</h3>
+            <p class="service-desc">Comfortable long-distance temple tours (Shirdi, Ashtavinayak, Tirupati) tailored with relaxed schedules for seniors.</p>
+          </div>
+        </div>
+      </section>
+
+      <!-- POPULAR PACKAGES / ROUTES -->
+      <section class="packages-section" id="packages">
+        <div class="section-header center">
+          <div class="section-subhead center">Popular Routes</div>
+          <h2 class="section-title">Curated Travel Packages</h2>
+        </div>
+
+        <div class="packages-grid">
+          <div class="package-card">
+            <div class="package-img-box">
+              <img src="assets/images/service_airport.jpg" alt="Mumbai Airport VIP Transfer" loading="lazy">
+              <span class="package-tag">From ₹2,499</span>
+            </div>
+            <div class="package-body">
+              <h3 class="package-title">Mumbai Airport Express</h3>
+              <p class="package-desc">CSMT / International Terminal to South Mumbai, BKC, or Navi Mumbai. Inclusive of toll & flight tracking.</p>
+            </div>
+          </div>
+
+          <div class="package-card">
+            <div class="package-img-box">
+              <img src="assets/images/service_outstation.jpg" alt="Mumbai to Pune Outstation Cab" loading="lazy">
+              <span class="package-tag">From ₹3,999</span>
+            </div>
+            <div class="package-body">
+              <h3 class="package-title">Mumbai ➔ Pune Expressway</h3>
+              <p class="package-desc">Door-to-door luxury transfer via the Mumbai-Pune Expressway in an executive sedan or Innova Hycross.</p>
+            </div>
+          </div>
+
+          <div class="package-card">
+            <div class="package-img-box">
+              <img src="assets/images/service_wedding.jpg" alt="Wedding Luxury Car Hire" loading="lazy">
+              <span class="package-tag">From ₹14,999</span>
+            </div>
+            <div class="package-body">
+              <h3 class="package-title">Royal Wedding Fleet</h3>
+              <p class="package-desc">Full-day luxury car package with decorated bride/groom car, uniformed chauffeur, and red-carpet arrival.</p>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- HOW IT WORKS (SVG LINE DRAWING) -->
+      <section class="how-section" id="how-it-works">
+        <div class="section-header center">
+          <div class="section-subhead center">Seamless Experience</div>
+          <h2 class="section-title">How It Works in 4 Steps</h2>
+        </div>
+
+        <div class="steps-container">
+          <!-- Animated SVG Connecting Line -->
+          <div class="svg-line-container">
+            <svg width="100%" height="100" viewBox="0 0 1000 100" preserveAspectRatio="none">
+              <path id="connecting-line" d="M 50 50 Q 300 10, 500 50 T 950 50" fill="none" />
+            </svg>
+          </div>
+
+          <div class="steps-grid">
+            <div class="step-card">
+              <div class="step-num-badge">1</div>
+              <h3 class="step-title">Select Vehicle</h3>
+              <p class="step-desc">Choose your preferred luxury car from our sedan, SUV, or MPV fleet.</p>
+            </div>
+
+            <div class="step-card">
+              <div class="step-num-badge">2</div>
+              <h3 class="step-title">Set Details</h3>
+              <p class="step-desc">Pick date, time, pickup location, and any special requests.</p>
+            </div>
+
+            <div class="step-card">
+              <div class="step-num-badge">3</div>
+              <h3 class="step-title">Instant Quote</h3>
+              <p class="step-desc">Receive clear, transparent pricing with no hidden charges via WhatsApp.</p>
+            </div>
+
+            <div class="step-card">
+              <div class="step-num-badge">4</div>
+              <h3 class="step-title">Enjoy Your Ride</h3>
+              <p class="step-desc">Your uniformed chauffeur arrives early for a smooth, relaxed journey.</p>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- REVIEWS & TESTIMONIALS -->
+      <section class="testimonials-section" id="reviews">
+        <div class="section-header">
+          <div class="section-subhead">Client Testimonials</div>
+          <h2 class="section-title">What Executives Say</h2>
+        </div>
+
+        <div class="testimonial-track">
+          <div class="testimonial-card">
+            <div>
+              <div class="stars">★★★★★</div>
+              <p class="quote-text">"Aura Chauffeurs has been our go-to service for all international executive visits in Mumbai. Immaculate cars, courteous drivers, and flawless timing every single time."</p>
+            </div>
+            <div class="client-info">
+              <div class="client-avatar">RV</div>
+              <div>
+                <div class="client-name">Rajesh Varma</div>
+                <div class="client-role">VP Operations, Global Tech</div>
+              </div>
+            </div>
+          </div>
+
+          <div class="testimonial-card">
+            <div>
+              <div class="stars">★★★★★</div>
+              <p class="quote-text">"Booked an Innova Hycross for a 4-day outstation trip to Mahabaleshwar with family. The ride was ultra-smooth, driver was extremely polite, and the car smelled fresh throughout."</p>
+            </div>
+            <div class="client-info">
+              <div class="client-avatar">SM</div>
+              <div>
+                <div class="client-name">Dr. Sunita Mehta</div>
+                <div class="client-role">Consultant Surgeon</div>
+              </div>
+            </div>
+          </div>
+
+          <div class="testimonial-card">
+            <div>
+              <div class="stars">★★★★★</div>
+              <p class="quote-text">"Used their Rolls-Royce for our daughter's wedding. The service was magnificent. A total head-turner and effortless coordination."</p>
+            </div>
+            <div class="client-info">
+              <div class="client-avatar">AK</div>
+              <div>
+                <div class="client-name">Anand Kapoor</div>
+                <div class="client-role">Industrialist</div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- BOOKING FORM SECTION -->
+      <section class="booking-section" id="booking">
+        <div class="booking-container">
+          <div class="section-header center" style="margin-bottom: 2.5rem;">
+            <div class="section-subhead center">Instant Reservation</div>
+            <h2 class="section-title">Book Your Chauffeur</h2>
+            <p>Fill out the form below or chat directly with our concierge on WhatsApp.</p>
+          </div>
+
+          <form id="booking-form">
+            <div class="booking-form-grid">
+              
+              <div class="form-group">
+                <input type="text" id="pickup" class="floating-input" placeholder=" " required>
+                <label for="pickup" class="floating-label">Pickup Location (City / Airport / Address)</label>
+              </div>
+
+              <div class="form-group">
+                <input type="text" id="drop" class="floating-input" placeholder=" " required>
+                <label for="drop" class="floating-label">Drop Destination</label>
+              </div>
+
+              <div class="form-group">
+                <input type="datetime-local" id="datetime" class="floating-input" placeholder=" " required>
+                <label for="datetime" class="floating-label">Pickup Date & Time</label>
+              </div>
+
+              <div class="form-group">
+                <select id="vehicle" class="floating-select" required>
+                  <option value="" disabled selected></option>
+                  <option value="Mercedes-Benz E-Class">Mercedes-Benz E-Class (Executive Sedan)</option>
+                  <option value="Toyota Innova Hycross">Toyota Innova Hycross (Executive MPV)</option>
+                  <option value="Range Rover SUV">Range Rover Autobiography (Luxury SUV)</option>
+                  <option value="Rolls-Royce Ghost">Rolls-Royce Ghost (Presidential Class)</option>
+                  <option value="Luxury Tempo Traveller">Luxury Tempo Traveller (12-16 Seater)</option>
+                </select>
+                <label for="vehicle" class="floating-label">Select Preferred Vehicle</label>
+              </div>
+
+              <div class="form-group">
+                <input type="text" id="name" class="floating-input" placeholder=" " required>
+                <label for="name" class="floating-label">Your Full Name</label>
+              </div>
+
+              <div class="form-group">
+                <input type="tel" id="phone" class="floating-input" placeholder=" " required>
+                <label for="phone" class="floating-label">WhatsApp / Phone Number</label>
+              </div>
+
+              <div class="form-group full-width">
+                <textarea id="notes" class="floating-textarea" rows="3" placeholder=" "></textarea>
+                <label for="notes" class="floating-label">Special Instructions (Flight No, Luggage, etc.)</label>
+              </div>
+
+            </div>
+
+            <div style="display: flex; gap: 1rem; flex-wrap: wrap; margin-top: 1rem;">
+              <button type="submit" class="btn-submit-booking" id="btn-submit" data-hover>
+                <span>Confirm Reservation</span>
+                <i class="fa-solid fa-paper-plane"></i>
+              </button>
+
+              <button type="button" class="btn-submit-booking btn-whatsapp" id="btn-whatsapp" data-hover>
+                <span>Book Via WhatsApp</span>
+                <i class="fa-brands fa-whatsapp"></i>
+              </button>
+            </div>
+          </form>
+
+          <div class="form-success-message" id="form-success">
+            <i class="fa-solid fa-circle-check" style="font-size: 3rem; color: #25D366; margin-bottom: 1rem;"></i>
+            <h3 style="font-family: var(--font-serif); font-size: 2rem;">Booking Request Received!</h3>
+            <p>Thank you. Our dispatch concierge will call you within 15 minutes to confirm driver assignment.</p>
+          </div>
+        </div>
+      </section>
+
+      <!-- FOOTER -->
+      <footer class="footer">
+        <div class="footer-grid">
+          <div>
+            <div class="footer-brand">AURA CHAUFFEURS</div>
+            <p class="footer-desc">Premium private travel, airport chauffeur transfers, and outstation corporate luxury mobility across Mumbai & Pan-India.</p>
+            <div style="display: flex; gap: 1rem; font-size: 1.2rem; color: var(--accent-gold);">
+              <a href="#" aria-label="Instagram"><i class="fa-brands fa-instagram"></i></a>
+              <a href="#" aria-label="LinkedIn"><i class="fa-brands fa-linkedin"></i></a>
+              <a href="#" aria-label="WhatsApp"><i class="fa-brands fa-whatsapp"></i></a>
+            </div>
+          </div>
+
+          <div>
+            <div class="footer-heading">Quick Links</div>
+            <ul class="footer-links">
+              <li><a href="#about">About Aura</a></li>
+              <li><a href="#fleet">Our Fleet</a></li>
+              <li><a href="#services">Services</a></li>
+              <li><a href="#packages">Popular Routes</a></li>
+              <li><a href="#booking">Book Online</a></li>
+            </ul>
+          </div>
+
+          <div>
+            <div class="footer-heading">Services</div>
+            <ul class="footer-links">
+              <li><a href="#services">Airport Transfers</a></li>
+              <li><a href="#services">Outstation Cabs</a></li>
+              <li><a href="#services">Wedding Cars</a></li>
+              <li><a href="#services">Corporate Fleet</a></li>
+              <li><a href="#services">Sightseeing</a></li>
+            </ul>
+          </div>
+
+          <div>
+            <div class="footer-heading">Concierge Contact</div>
+            <p style="color: rgba(255,255,255,0.7); font-size: 0.95rem; margin-bottom: 0.5rem;">
+              <i class="fa-solid fa-phone" style="color: var(--accent-gold);"></i> +91 98765 43210
+            </p>
+            <p style="color: rgba(255,255,255,0.7); font-size: 0.95rem; margin-bottom: 0.5rem;">
+              <i class="fa-solid fa-envelope" style="color: var(--accent-gold);"></i> concierge@aurachauffeurs.com
+            </p>
+            <p style="color: rgba(255,255,255,0.7); font-size: 0.95rem;">
+              <i class="fa-solid fa-location-dot" style="color: var(--accent-gold);"></i> BKC & Airport Terminal 2, Mumbai
+            </p>
+          </div>
+        </div>
+
+        <div class="footer-bottom">
+          <div>© 2026 Aura Chauffeurs Ltd. All rights reserved. Designed for Luxury Mobility.</div>
+          <button class="back-to-top" id="back-to-top" aria-label="Back to top" data-hover>
+            <i class="fa-solid fa-arrow-up"></i>
+          </button>
+        </div>
+      </footer>
+
+    </div>
+  </main>
+
+  <!-- CDN DEPENDENCIES: GSAP, ScrollTrigger, Lenis Smooth Scroll -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/@studio-freight/lenis@1.0.42/dist/lenis.min.js"></script>
+
+  <!-- Main JavaScript File -->
+  <script src="js/main.js"></script>
+
+</body>
+</html>
