@@ -144,6 +144,45 @@
   .qa.open button .ic{color:#fff;transform:rotate(180deg)}
   .faq .slot{height:480px;border-radius:14px;--g1:#d6a57b;--g2:#f1d4b8}
 
+  /* ---------- Local booking demo ---------- */
+  #booking{background:#f5f7fa}
+  .booking-layout{display:grid;grid-template-columns:1.2fr .8fr;gap:30px;align-items:start}
+  .booking-card,.booking-info,.admin-panel{background:#fff;border-radius:var(--radius);padding:clamp(24px,4vw,40px);box-shadow:0 12px 40px rgba(10,31,68,.09)}
+  .booking-form{display:grid;grid-template-columns:1fr 1fr;gap:18px}
+  .field{display:grid;gap:7px;color:var(--navy);font-size:.9rem;font-weight:700}
+  .field.full{grid-column:1/-1}
+  .field input,.field select,.field textarea{width:100%;min-width:0;border:1px solid var(--line);border-radius:8px;padding:12px 14px;background:#fff;color:var(--text);font:400 1rem 'Roboto',sans-serif}
+  .field textarea{min-height:110px;resize:vertical}
+  .field input:focus,.field select:focus,.field textarea:focus{outline:3px solid rgba(251,140,36,.24);border-color:var(--orange)}
+  .booking-form .btn{justify-content:center}
+  .form-message{min-height:1.65em;margin-top:14px;font-size:.92rem}
+  .form-message.error{color:#b42318}
+  .form-message.success{color:#16713e}
+  .booking-info h3,.admin-panel h3{font-size:1.45rem;margin-bottom:12px}
+  .booking-info p{margin-bottom:16px}
+  .demo-note{padding:14px 16px;border-left:3px solid var(--orange);background:#fff4e8;border-radius:4px;font-size:.9rem}
+  .admin-toggle{margin-top:24px}
+  .admin-panel{margin-top:30px}
+  .admin-head{display:flex;justify-content:space-between;align-items:center;gap:20px;margin-bottom:20px}
+  .admin-head p{font-size:.92rem}
+  .booking-stats{display:grid;grid-template-columns:repeat(3,1fr);gap:14px;margin-bottom:20px}
+  .booking-stat{padding:16px;border-radius:10px;background:#f5f7fa}
+  .booking-stat b{display:block;color:var(--navy);font:700 1.5rem 'Cabin',sans-serif}
+  .booking-stat span{font-size:.82rem}
+  .booking-list{display:grid;gap:14px}
+  .booking-entry{border:1px solid var(--line);border-radius:12px;padding:18px}
+  .booking-entry-head{display:flex;justify-content:space-between;gap:12px;align-items:start;margin-bottom:10px}
+  .booking-entry h4{font-size:1.1rem}
+  .booking-entry p{margin-top:5px;overflow-wrap:anywhere}
+  .booking-entry dl{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:10px 18px;margin:14px 0}
+  .booking-entry dt{font-size:.75rem;text-transform:uppercase;letter-spacing:.06em;color:#788496}
+  .booking-entry dd{overflow-wrap:anywhere}
+  .booking-entry-actions{display:flex;justify-content:space-between;align-items:center;gap:12px}
+  .booking-entry-actions label{display:flex;align-items:center;gap:8px;font-weight:700;font-size:.85rem;color:var(--navy)}
+  .booking-entry-actions select{border:1px solid var(--line);border-radius:6px;padding:8px;background:#fff;color:var(--text)}
+  .delete-booking{color:#b42318;text-decoration:underline;font-weight:700}
+  .booking-empty{padding:24px;text-align:center;color:#788496;background:#f5f7fa;border-radius:10px}
+
   /* ---------- Footer ---------- */
   footer{background:var(--navy-d);color:#b3bed2;padding:80px 0 0}
   .fgrid{display:grid;grid-template-columns:1fr 1.5fr 1fr 1fr;gap:40px;align-items:start}
@@ -168,6 +207,8 @@
   /* ---------- Reveal ---------- */
   .rv{opacity:0;transform:translateY(36px);transition:opacity .8s ease,transform .8s cubic-bezier(.2,.7,.2,1);transition-delay:var(--d,0s)}
   .rv.in{opacity:1;transform:none}
+  .text-reveal{opacity:0;transition:opacity .8s ease;transition-delay:var(--d,0s)}
+  .text-reveal.in{opacity:1}
 
   /* ---------- Intro animation ---------- */
   body.locked{overflow:hidden}
@@ -213,6 +254,7 @@
     .arr{display:none}
     .strip{grid-template-columns:1fr 1fr}
     .faq{grid-template-columns:1fr}
+    .booking-layout{grid-template-columns:1fr}
     .fgrid{grid-template-columns:1fr 1fr}
   }
   @media (max-width:900px){
@@ -232,10 +274,17 @@
     .strip .slot{height:220px}
     .qa button{padding:18px 20px}
     .faq .slot{height:300px}
+    .booking-form{grid-template-columns:1fr}
+    .field.full{grid-column:auto}
+    .admin-head{align-items:start;flex-direction:column}
+    .booking-stats{grid-template-columns:1fr}
+    .booking-entry dl{grid-template-columns:1fr}
+    .booking-entry-actions{align-items:start;flex-direction:column}
   }
   @media (prefers-reduced-motion:reduce){
     html{scroll-behavior:auto}
     .rv{opacity:1;transform:none;transition:none}
+    .text-reveal{opacity:1;transition:none}
     .wa::after{animation:none}
     .intro::before{animation:none;opacity:1;transform:none}
     .i-emblem,.i-name,.rule,.i-trainwrap img,.i-trainwrap .track,.i-tag{animation:none;clip-path:none;opacity:1;transform:none;filter:none}
@@ -309,6 +358,7 @@
           <li><a href="#packages">Papikondalu</a></li>
           <li><a href="#packages">Lambasingi</a></li>
         </ul></li>
+      <li><a class="lnk" href="#booking">Book online</a></li>
       <li><a class="lnk" href="#faq">FAQ</a></li>
     </ul>
   </nav>
@@ -324,7 +374,7 @@
     <h1>Travel Comfortably, Arrive Happily</h1>
     <p>Well-maintained cars and buses with trained, polite drivers for tours, outstation trips and airport transfers, at honest prices.</p>
     <div class="acts">
-      <a href="#packages" class="btn">Explore packages <svg class="ic"><use href="#i-arr"/></svg></a>
+      <a href="#booking" class="btn">Book your trip <svg class="ic"><use href="#i-arr"/></svg></a>
       <a href="#" class="btn ghost" data-wa="Hi Annapurna Tours, I want to book a trip.">Book on WhatsApp</a>
     </div>
   </div>
@@ -442,6 +492,80 @@
   </div>
 </section>
 
+<!-- Local-only booking prototype -->
+<section id="booking">
+  <div class="wrap">
+    <div class="sec-head rv">
+      <span class="script">Plan Your Trip</span>
+      <h2>Book Your Journey</h2>
+      <p>Share your trip details and save a booking request in this browser.</p>
+    </div>
+    <div class="booking-layout">
+      <div class="booking-card rv">
+        <form class="booking-form" id="bookingForm">
+          <label class="field">Full name
+            <input name="name" type="text" autocomplete="name" maxlength="100" required>
+          </label>
+          <label class="field">Phone / WhatsApp
+            <input name="phone" type="tel" autocomplete="tel" maxlength="30" required>
+          </label>
+          <label class="field">Service
+            <select name="service" required>
+              <option value="">Choose a service</option>
+              <option>Local sightseeing</option>
+              <option>Outstation tour</option>
+              <option>Airport &amp; station transfer</option>
+              <option>Group &amp; event travel</option>
+            </select>
+          </label>
+          <label class="field">Travel date
+            <input name="travelDate" id="travelDate" type="date" required>
+          </label>
+          <label class="field">Return date (optional)
+            <input name="returnDate" id="returnDate" type="date">
+          </label>
+          <label class="field">Passengers
+            <input name="passengers" type="number" min="1" max="100" value="1" required>
+          </label>
+          <label class="field">Pickup location
+            <input name="pickup" type="text" maxlength="160" required>
+          </label>
+          <label class="field">Destination
+            <input name="destination" type="text" maxlength="160" required>
+          </label>
+          <label class="field full">Trip notes (optional)
+            <textarea name="notes" maxlength="500" placeholder="Preferred vehicle, stops, or other details"></textarea>
+          </label>
+          <button class="btn field full" type="submit">Save booking request</button>
+        </form>
+        <p class="form-message" id="bookingMessage" role="status" aria-live="polite"></p>
+      </div>
+      <aside class="booking-info rv">
+        <h3>What happens next?</h3>
+        <p>Your request is saved locally in this browser. This prototype does not send the booking to Annapurna Tours or notify a driver.</p>
+        <p class="demo-note">Local demo only: bookings are not shared between devices or visitors. Do not enter real customer or payment information here.</p>
+        <button class="btn admin-toggle" id="toggleAdmin" type="button" aria-expanded="false" aria-controls="adminPanel">Open local dashboard</button>
+      </aside>
+    </div>
+    <div class="admin-panel rv" id="adminPanel" hidden aria-labelledby="adminTitle">
+      <div class="admin-head">
+        <div>
+          <h3 id="adminTitle">Local booking dashboard</h3>
+          <p>These records exist only in this browser and are not protected by admin authentication.</p>
+        </div>
+        <button class="btn" id="closeAdmin" type="button">Close dashboard</button>
+      </div>
+      <p class="form-message" id="dashboardMessage" role="status" aria-live="polite"></p>
+      <div class="booking-stats" aria-label="Booking summary">
+        <div class="booking-stat"><b id="totalBookings">0</b><span>Total requests</span></div>
+        <div class="booking-stat"><b id="newBookings">0</b><span>New</span></div>
+        <div class="booking-stat"><b id="confirmedBookings">0</b><span>Confirmed</span></div>
+      </div>
+      <div class="booking-list" id="bookingList" aria-live="polite"></div>
+    </div>
+  </div>
+</section>
+
 <!-- Footer -->
 <footer id="contact">
   <div class="wrap">
@@ -520,6 +644,249 @@
     entries.forEach(function(e){ if(e.isIntersecting){ e.target.classList.add('in'); io.unobserve(e.target); } });
   }, {threshold:.12});
   document.querySelectorAll('.rv').forEach(function(el){ io.observe(el); });
+  var textWalker = document.createTreeWalker(document.body, NodeFilter.SHOW_TEXT);
+  var textNodes = [];
+  while (textWalker.nextNode()) {
+    var textNode = textWalker.currentNode;
+    if (textNode.nodeValue.trim()) textNodes.push(textNode);
+  }
+  textNodes.forEach(function(textNode){
+    var el = textNode.parentElement;
+    if (el && !el.closest('.rv, .intro, svg, script, style, noscript')) {
+      el.classList.add('text-reveal');
+      io.observe(el);
+    }
+  });
+
+  // ----- Local booking demo
+  var bookingForm = document.getElementById('bookingForm');
+  var bookingMessage = document.getElementById('bookingMessage');
+  var dashboardMessage = document.getElementById('dashboardMessage');
+  var adminPanel = document.getElementById('adminPanel');
+  var bookingList = document.getElementById('bookingList');
+  var toggleAdmin = document.getElementById('toggleAdmin');
+  var storageKey = 'annapurna-tour-bookings';
+  var bookingStatuses = ['New', 'Contacted', 'Confirmed', 'Cancelled'];
+
+  function showMessage(el, message, type){
+    el.textContent = message;
+    el.className = 'form-message' + (type ? ' ' + type : '');
+  }
+
+  function readBookings(messageEl){
+    var stored;
+    try {
+      stored = window.localStorage.getItem(storageKey);
+    } catch(error) {
+      console.error('Could not read local bookings.', error);
+      showMessage(messageEl, 'Saved bookings are unavailable in this browser.', 'error');
+      return null;
+    }
+    if (!stored) return [];
+    try {
+      var records = JSON.parse(stored);
+      if (!Array.isArray(records) || records.some(function(record){ return !record || typeof record !== 'object' || typeof record.id !== 'string'; })) {
+        throw new TypeError('Saved booking data has an invalid format.');
+      }
+      return records;
+    } catch(error) {
+      console.error('Could not parse local bookings.', error);
+      showMessage(messageEl, 'Saved booking data could not be read. Clear this browser’s site data before continuing.', 'error');
+      return null;
+    }
+  }
+
+  function writeBookings(records, messageEl){
+    try {
+      window.localStorage.setItem(storageKey, JSON.stringify(records));
+      return true;
+    } catch(error) {
+      console.error('Could not save local bookings.', error);
+      showMessage(messageEl, 'The booking could not be saved in this browser. Check available storage and try again.', 'error');
+      return false;
+    }
+  }
+
+  function formatDate(value){
+    if (!value) return 'Not provided';
+    var date = new Date(value + 'T00:00:00');
+    return Number.isNaN(date.getTime()) ? value : new Intl.DateTimeFormat(undefined, {dateStyle:'medium'}).format(date);
+  }
+
+  function appendBookingDetail(list, label, value){
+    var item = document.createElement('div');
+    var term = document.createElement('dt');
+    var description = document.createElement('dd');
+    term.textContent = label;
+    description.textContent = value || 'Not provided';
+    item.appendChild(term);
+    item.appendChild(description);
+    list.appendChild(item);
+  }
+
+  function renderDashboard(){
+    var records = readBookings(dashboardMessage);
+    if (!records) {
+      document.getElementById('totalBookings').textContent = '—';
+      document.getElementById('newBookings').textContent = '—';
+      document.getElementById('confirmedBookings').textContent = '—';
+      bookingList.replaceChildren();
+      return;
+    }
+    showMessage(dashboardMessage, '', '');
+    document.getElementById('totalBookings').textContent = String(records.length);
+    document.getElementById('newBookings').textContent = String(records.filter(function(record){ return record.status === 'New'; }).length);
+    document.getElementById('confirmedBookings').textContent = String(records.filter(function(record){ return record.status === 'Confirmed'; }).length);
+    bookingList.replaceChildren();
+    if (!records.length) {
+      var empty = document.createElement('p');
+      empty.className = 'booking-empty';
+      empty.textContent = 'No local booking requests yet.';
+      bookingList.appendChild(empty);
+      return;
+    }
+
+    records.forEach(function(record){
+      var card = document.createElement('article');
+      var head = document.createElement('div');
+      var title = document.createElement('h4');
+      var reference = document.createElement('p');
+      var details = document.createElement('dl');
+      var notes = document.createElement('p');
+      var actions = document.createElement('div');
+      var statusLabel = document.createElement('label');
+      var statusSelect = document.createElement('select');
+      var deleteButton = document.createElement('button');
+
+      card.className = 'booking-entry';
+      head.className = 'booking-entry-head';
+      actions.className = 'booking-entry-actions';
+      title.textContent = record.name || 'Unnamed request';
+      reference.textContent = 'Request ' + record.id.slice(0, 8) + ' · ' + (record.status || 'New');
+      head.appendChild(title);
+      head.appendChild(reference);
+
+      appendBookingDetail(details, 'Service', record.service);
+      appendBookingDetail(details, 'Travel date', formatDate(record.travelDate));
+      appendBookingDetail(details, 'Return date', formatDate(record.returnDate));
+      appendBookingDetail(details, 'Passengers', String(record.passengers || 'Not provided'));
+      appendBookingDetail(details, 'Pickup', record.pickup);
+      appendBookingDetail(details, 'Destination', record.destination);
+      appendBookingDetail(details, 'Phone', record.phone);
+      appendBookingDetail(details, 'Submitted', record.createdAt ? new Date(record.createdAt).toLocaleString() : 'Not provided');
+      notes.textContent = record.notes ? 'Notes: ' + record.notes : '';
+
+      statusLabel.textContent = 'Status';
+      statusSelect.setAttribute('aria-label', 'Status for ' + (record.name || 'booking'));
+      bookingStatuses.forEach(function(status){
+        var option = document.createElement('option');
+        option.value = status;
+        option.textContent = status;
+        option.selected = (record.status || 'New') === status;
+        statusSelect.appendChild(option);
+      });
+      statusSelect.dataset.action = 'status';
+      statusSelect.dataset.id = record.id;
+      statusLabel.appendChild(statusSelect);
+      deleteButton.type = 'button';
+      deleteButton.className = 'delete-booking';
+      deleteButton.dataset.action = 'delete';
+      deleteButton.dataset.id = record.id;
+      deleteButton.textContent = 'Delete request';
+      actions.appendChild(statusLabel);
+      actions.appendChild(deleteButton);
+      card.appendChild(head);
+      card.appendChild(details);
+      if (record.notes) card.appendChild(notes);
+      card.appendChild(actions);
+      bookingList.appendChild(card);
+    });
+  }
+
+  function refreshDashboardIfOpen(){
+    if (!adminPanel.hidden) renderDashboard();
+  }
+
+  function localDateString(date){
+    var year = date.getFullYear();
+    var month = String(date.getMonth() + 1).padStart(2, '0');
+    var day = String(date.getDate()).padStart(2, '0');
+    return year + '-' + month + '-' + day;
+  }
+  var today = localDateString(new Date());
+  document.getElementById('travelDate').min = today;
+  document.getElementById('returnDate').min = today;
+
+  bookingForm.addEventListener('submit', function(e){
+    e.preventDefault();
+    var travelDate = bookingForm.elements.namedItem('travelDate').value;
+    var returnDate = bookingForm.elements.namedItem('returnDate').value;
+    bookingForm.elements.namedItem('returnDate').setCustomValidity(returnDate && returnDate < travelDate ? 'Return date must be on or after the travel date.' : '');
+    if (!bookingForm.reportValidity()) return;
+
+    var formData = new FormData(bookingForm);
+    var id = window.crypto && typeof window.crypto.randomUUID === 'function'
+      ? window.crypto.randomUUID()
+      : Date.now().toString(36) + Math.random().toString(36).slice(2, 10);
+    var records = readBookings(bookingMessage);
+    if (!records) return;
+    records.unshift({
+      id:id,
+      createdAt:new Date().toISOString(),
+      status:'New',
+      name:formData.get('name').trim(),
+      phone:formData.get('phone').trim(),
+      service:formData.get('service'),
+      travelDate:travelDate,
+      returnDate:returnDate,
+      passengers:formData.get('passengers'),
+      pickup:formData.get('pickup').trim(),
+      destination:formData.get('destination').trim(),
+      notes:formData.get('notes').trim()
+    });
+    if (!writeBookings(records, bookingMessage)) return;
+    bookingForm.reset();
+    showMessage(bookingMessage, 'Request saved in this browser. Reference: ' + id.slice(0, 8) + '.', 'success');
+    refreshDashboardIfOpen();
+  });
+
+  toggleAdmin.addEventListener('click', function(){
+    adminPanel.hidden = false;
+    toggleAdmin.setAttribute('aria-expanded', 'true');
+    renderDashboard();
+    adminPanel.scrollIntoView({behavior:reduce ? 'auto' : 'smooth', block:'start'});
+  });
+  document.getElementById('closeAdmin').addEventListener('click', function(){
+    adminPanel.hidden = true;
+    toggleAdmin.setAttribute('aria-expanded', 'false');
+    toggleAdmin.focus();
+  });
+  bookingList.addEventListener('change', function(e){
+    var target = e.target;
+    if (!target.matches('[data-action="status"]')) return;
+    var records = readBookings(dashboardMessage);
+    if (!records) return;
+    var record = records.find(function(item){ return item.id === target.dataset.id; });
+    if (!record) {
+      showMessage(dashboardMessage, 'That booking could not be found. Refresh the dashboard and try again.', 'error');
+      return;
+    }
+    record.status = target.value;
+    if (writeBookings(records, dashboardMessage)) renderDashboard();
+  });
+  bookingList.addEventListener('click', function(e){
+    var target = e.target.closest('[data-action="delete"]');
+    if (!target) return;
+    var records = readBookings(dashboardMessage);
+    if (!records) return;
+    if (!window.confirm('Delete this booking request from this browser?')) return;
+    var remaining = records.filter(function(record){ return record.id !== target.dataset.id; });
+    if (remaining.length === records.length) {
+      showMessage(dashboardMessage, 'That booking could not be found. Refresh the dashboard and try again.', 'error');
+      return;
+    }
+    if (writeBookings(remaining, dashboardMessage)) renderDashboard();
+  });
 
   // ----- Mobile menu
   var burger = document.getElementById('burger'), nav = document.getElementById('nav');
