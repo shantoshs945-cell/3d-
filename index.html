@@ -3,143 +3,366 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>Roadline Car Travels — Cabs, outstation trips &amp; tours</title>
+<title>Annapurna Tours, Travels &amp; Transport — Premium chauffeurs &amp; outstation fleets</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Barlow+Condensed:wght@600;700;800&family=Barlow:wght@400;500;600&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Inter+Tight:wght@600;700;800&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
 <style>
   :root{
-    --asphalt:#14181d;
-    --panel:rgba(20,24,29,.74);
-    --line:#f4f1e8;
-    --amber:#ffb81f;
-    --red:#ff4d3a;
-    --radius:16px;
+    --ink:#0f1218;
+    --muted:#586070;
+    --gold:#b98a12;
+    --gold-d:#99720b;
+    --gold-soft:rgba(185,138,18,.14);
+    --glass:rgba(255,255,255,.52);
+    --glass-in:rgba(255,255,255,.55);
+    --stroke:rgba(255,255,255,.75);
+    --veil:.34;               /* how much white sits over the video (0 = raw video, 1 = hidden) */
+    --radius:22px;
   }
   *{box-sizing:border-box;margin:0;padding:0}
   html{scroll-behavior:smooth}
-  body{font-family:'Barlow',system-ui,sans-serif;color:var(--line);background:var(--asphalt);line-height:1.6;-webkit-font-smoothing:antialiased}
-  :focus-visible{outline:3px solid var(--amber);outline-offset:3px}
+  body{font-family:'Inter',system-ui,sans-serif;font-size:15px;color:var(--ink);background:#dfe5ee;line-height:1.55;-webkit-font-smoothing:antialiased}
+  h1,h2,h3,.big{font-family:'Inter Tight','Inter',sans-serif;font-weight:800;text-transform:uppercase;letter-spacing:-.025em;line-height:1}
+  :focus-visible{outline:3px solid var(--gold);outline-offset:3px}
+  button{font:inherit;cursor:pointer}
+  .ic{width:1em;height:1em;fill:none;stroke:currentColor;stroke-width:2;stroke-linecap:round;stroke-linejoin:round;flex:none}
 
   /* ---------- Background video ---------- */
-  .bg{position:fixed;inset:0;z-index:-2;overflow:hidden;background:var(--asphalt)}
+  .bg{position:fixed;inset:0;z-index:-2;overflow:hidden;background:#cfd7e3}
   .bg video{position:absolute;top:50%;left:50%;min-width:100%;min-height:100%;width:auto;height:auto;
     transform:translate(-50%,-50%) scale(var(--zoom,1));object-fit:cover;will-change:transform}
   .bg::after{content:"";position:absolute;inset:0;
-    background:linear-gradient(180deg,rgba(20,24,29,.35) 0%,rgba(20,24,29,.5) 55%,rgba(20,24,29,.82) 100%);
-    opacity:var(--shade,.85)}
+    background:linear-gradient(180deg,rgba(244,247,252,calc(var(--veil) + .14)),rgba(244,247,252,var(--veil)) 45%,rgba(244,247,252,calc(var(--veil) + .14)))}
 
-  /* ---------- Road progress: car drives along as you scroll ---------- */
+  /* ---------- Road progress ---------- */
   .road{position:fixed;top:0;left:0;right:0;height:18px;z-index:60;pointer-events:none}
   .road::before{content:"";position:absolute;left:0;right:0;top:8px;height:2px;
-    background:repeating-linear-gradient(90deg,rgba(244,241,232,.55) 0 14px,transparent 14px 26px)}
+    background:repeating-linear-gradient(90deg,rgba(15,18,24,.45) 0 14px,transparent 14px 26px)}
   .car{position:absolute;top:0;left:0;width:30px;height:16px;transform:translateX(var(--car,0px))}
 
-  /* ---------- Nav ---------- */
+  /* ---------- Header ---------- */
   header{position:fixed;top:18px;left:0;right:0;z-index:50;display:flex;justify-content:space-between;align-items:center;
-    padding:14px clamp(20px,5vw,56px);transition:background .3s,backdrop-filter .3s}
-  header.solid{background:rgba(20,24,29,.78);backdrop-filter:blur(12px)}
-  .logo{font-family:'Barlow Condensed',sans-serif;font-weight:800;font-size:1.6rem;letter-spacing:.01em;color:var(--line);text-decoration:none}
-  .logo span{color:var(--amber)}
-  nav{display:flex;gap:26px;align-items:center}
-  nav a{color:var(--line);text-decoration:none;font-weight:500;font-size:.95rem;opacity:.85;transition:opacity .2s}
-  nav a:hover{opacity:1}
-  .btn{display:inline-block;background:var(--amber);color:var(--asphalt);padding:14px 28px;border-radius:10px;
-    font-family:'Barlow Condensed',sans-serif;font-weight:700;font-size:1.1rem;letter-spacing:.02em;text-decoration:none;border:0;cursor:pointer;
-    transition:transform .2s,box-shadow .2s}
-  .btn:hover{transform:translateY(-2px);box-shadow:0 10px 28px rgba(255,184,31,.35)}
-  nav .btn{padding:9px 20px;opacity:1;color:var(--asphalt)}
-  .btn.ghost{background:transparent;color:var(--line);border:1.5px solid rgba(244,241,232,.5)}
-  .btn.ghost:hover{box-shadow:none;border-color:var(--line)}
+    padding:12px clamp(18px,4vw,48px);
+    background:rgba(255,255,255,.5);backdrop-filter:blur(18px) saturate(170%);-webkit-backdrop-filter:blur(18px) saturate(170%);
+    border-bottom:1px solid var(--stroke);transition:background .3s}
+  header.solid{background:rgba(255,255,255,.72)}
+  .logo{font-family:'Inter Tight',sans-serif;font-weight:800;font-size:1.35rem;letter-spacing:-.02em;color:var(--ink);text-decoration:none;display:flex;align-items:center;gap:6px}
+  .logo img{height:44px;width:auto;display:block}
+  footer .logo img{height:40px}
+  nav{display:flex;gap:30px;align-items:center}
+  nav a.lnk{color:var(--ink);text-decoration:none;font-weight:600;font-size:.72rem;letter-spacing:.08em;text-transform:uppercase;opacity:.8;transition:opacity .2s}
+  nav a.lnk:hover{opacity:1;color:var(--gold-d)}
+  .head-r{display:flex;gap:12px;align-items:center}
+  .avatar{width:34px;height:34px;border-radius:50%;background:var(--ink);color:#fff;display:grid;place-items:center;font-size:.95rem}
+
+  .btn{display:inline-flex;align-items:center;justify-content:center;gap:8px;background:var(--gold);color:#fff;padding:13px 26px;border-radius:10px;border:0;
+    font-weight:700;font-size:.74rem;letter-spacing:.08em;text-transform:uppercase;text-decoration:none;
+    box-shadow:0 8px 20px rgba(185,138,18,.28);transition:transform .2s,box-shadow .2s,background .2s}
+  .btn:hover{transform:translateY(-2px);background:var(--gold-d);box-shadow:0 12px 26px rgba(185,138,18,.36)}
+  .btn.sm{padding:10px 18px}
+  .btn.glass-btn{background:var(--glass);color:var(--ink);border:1px solid var(--stroke);box-shadow:0 6px 18px rgba(15,18,24,.08);backdrop-filter:blur(14px);-webkit-backdrop-filter:blur(14px)}
+  .btn.glass-btn:hover{background:rgba(255,255,255,.8)}
 
   /* ---------- Hero ---------- */
-  .hero{height:100vh;min-height:640px;display:flex;align-items:center;padding:0 clamp(20px,6vw,80px);position:relative}
-  .hero-inner{max-width:980px;transform:translateY(var(--hy,0px)) scale(var(--hs,1));opacity:var(--ho,1);transform-origin:left center;will-change:transform,opacity}
-  .hero h1{font-family:'Barlow Condensed',sans-serif;font-weight:800;font-size:clamp(3.2rem,11vw,9rem);line-height:.9;letter-spacing:-.01em;text-transform:uppercase}
-  .hero p{margin:26px 0 34px;max-width:48ch;font-size:clamp(1.05rem,2vw,1.3rem);opacity:.92}
-  .hero .actions{display:flex;gap:14px;flex-wrap:wrap}
-  .hint{position:absolute;bottom:26px;left:50%;transform:translateX(-50%);font-size:.85rem;opacity:calc(.75 * var(--ho,1))}
+  .hero{min-height:92vh;display:flex;align-items:center;justify-content:center;text-align:center;padding:140px clamp(20px,6vw,80px) 60px;position:relative}
+  .hero-inner{max-width:900px;transform:translateY(var(--hy,0px)) scale(var(--hs,1));opacity:var(--ho,1);will-change:transform,opacity}
+  .pill{display:inline-flex;align-items:center;gap:8px;padding:7px 16px;border-radius:999px;font-size:.62rem;font-weight:700;letter-spacing:.1em;text-transform:uppercase;
+    color:var(--gold-d);background:rgba(255,255,255,.6);border:1px solid var(--stroke);backdrop-filter:blur(14px);-webkit-backdrop-filter:blur(14px)}
+  .pill::before{content:"";width:6px;height:6px;border-radius:50%;background:var(--gold)}
+  .hero h1{font-size:clamp(2.6rem,8vw,5.8rem);margin:26px 0 20px;text-shadow:0 2px 30px rgba(255,255,255,.55)}
+  .hero h1 em{font-style:normal;color:var(--gold)}
+  .hero p{max-width:46ch;margin:0 auto 30px;color:#2b3340;font-size:1.02rem;font-weight:500;text-shadow:0 1px 18px rgba(255,255,255,.7)}
+  .hero .actions{display:flex;gap:12px;justify-content:center;flex-wrap:wrap}
+  .hint{position:absolute;bottom:26px;left:50%;transform:translateX(-50%);font-size:.6rem;font-weight:700;letter-spacing:.14em;text-transform:uppercase;color:#2b3340;
+    display:grid;justify-items:center;gap:4px;opacity:calc(.8 * var(--ho,1))}
 
-  /* ---------- Panels ---------- */
-  section.panel{padding:clamp(60px,10vw,120px) clamp(20px,6vw,80px)}
-  .glass{background:var(--panel);backdrop-filter:blur(16px);-webkit-backdrop-filter:blur(16px);
-    border:1px solid rgba(244,241,232,.12);border-radius:var(--radius);padding:clamp(26px,5vw,60px);max-width:1120px;margin:0 auto}
-  h2{font-family:'Barlow Condensed',sans-serif;font-weight:700;font-size:clamp(2.2rem,5.5vw,4rem);line-height:1;text-transform:uppercase;margin-bottom:16px}
-  .lead{max-width:58ch;opacity:.9;font-size:1.1rem}
+  /* ---------- Glass panels ---------- */
+  main{padding:0 clamp(14px,3vw,36px)}
+  section.panel{padding:0 0 clamp(36px,6vw,64px)}
+  .glass{position:relative;isolation:isolate;max-width:1180px;margin:0 auto;border-radius:var(--radius);padding:clamp(22px,3.6vw,44px);
+    background:var(--glass);
+    backdrop-filter:blur(26px) saturate(180%);-webkit-backdrop-filter:blur(26px) saturate(180%);
+    border:1px solid var(--stroke);
+    box-shadow:0 18px 50px rgba(15,18,24,.14),inset 0 1px 0 rgba(255,255,255,.9)}
 
-  .grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(230px,1fr));gap:18px;margin-top:36px}
-  .card{padding:24px;border-radius:12px;background:rgba(244,241,232,.07);border-top:3px solid var(--amber)}
-  .card h3{font-family:'Barlow Condensed',sans-serif;font-size:1.5rem;text-transform:uppercase;margin-bottom:4px}
-  .card .meta{color:var(--amber);font-weight:600;font-size:.95rem}
-  .card p{opacity:.82;font-size:.95rem;margin-top:8px}
-
-  .split{display:grid;grid-template-columns:1fr 1fr;gap:clamp(24px,5vw,60px);align-items:start}
-  .stats{display:grid;gap:16px}
-  .stat{padding:20px 24px;border-radius:12px;background:rgba(255,184,31,.12);border-left:4px solid var(--amber)}
-  .stat b{font-family:'Barlow Condensed',sans-serif;font-size:2.4rem;display:block;line-height:1.1}
+  .eyebrow{display:flex;align-items:center;gap:8px;font-size:.6rem;font-weight:700;letter-spacing:.14em;text-transform:uppercase;color:var(--gold-d);margin-bottom:10px}
+  .eyebrow::before{content:"";width:14px;height:2px;background:var(--gold)}
+  h2{font-size:clamp(1.9rem,4.4vw,3rem)}
+  .sub{color:var(--muted);font-size:.82rem;margin-top:8px}
+  .head-row{display:flex;justify-content:space-between;align-items:flex-end;gap:18px;flex-wrap:wrap;margin-bottom:26px}
+  .badge{display:inline-flex;align-items:center;gap:7px;padding:8px 14px;border-radius:999px;font-size:.62rem;font-weight:700;letter-spacing:.06em;
+    color:var(--gold-d);background:var(--gold-soft);border:1px solid rgba(185,138,18,.25)}
+  .badge.green{color:#0f6b46;background:rgba(18,160,100,.12);border-color:rgba(18,160,100,.25);text-transform:uppercase}
+  .badge.green::before{content:"";width:6px;height:6px;border-radius:50%;background:#12a064}
 
   /* ---------- Booking form ---------- */
-  form{display:grid;gap:14px;margin-top:8px}
-  label{font-size:.9rem;font-weight:500;display:grid;gap:6px}
-  input,select{width:100%;padding:14px 16px;border-radius:10px;border:1.5px solid rgba(244,241,232,.25);
-    background:rgba(244,241,232,.08);color:var(--line);font:inherit}
-  input::placeholder{color:rgba(244,241,232,.5)}
-  select option{color:#111}
-  .row{display:grid;grid-template-columns:1fr 1fr;gap:14px}
-  .note{font-size:.85rem;opacity:.7}
+  .fields{display:grid;grid-template-columns:repeat(4,1fr);gap:14px}
+  label{display:grid;gap:7px;font-size:.58rem;font-weight:700;letter-spacing:.12em;text-transform:uppercase;color:#3b4350}
+  label .dot{display:inline-block;width:6px;height:6px;border-radius:50%;margin-right:6px;vertical-align:middle}
+  .inp{position:relative}
+  .inp input,.inp select{width:100%;padding:13px 40px 13px 14px;border-radius:10px;border:1px solid rgba(15,18,24,.12);
+    background:rgba(255,255,255,.6);color:var(--ink);font:inherit;font-size:.8rem;font-weight:500;letter-spacing:0;text-transform:none;appearance:none;-webkit-appearance:none}
+  .inp input::placeholder{color:#8a93a1}
+  .inp .ic{position:absolute;right:14px;top:50%;transform:translateY(-50%);color:#7b8494;pointer-events:none;font-size:.95rem}
+  .inp input:focus,.inp select:focus{border-color:var(--gold);background:#fff}
+  .row2{display:grid;grid-template-columns:3fr 1fr;gap:14px;margin-top:14px;align-items:end}
+  .row2 .btn{padding:15px;width:100%}
+  .note{display:flex;align-items:center;gap:7px;margin-top:16px;font-size:.68rem;color:var(--muted)}
+  .span{grid-column:span 1}
 
-  /* ---------- Floating panels with multi-colour glow ---------- */
-  .glass{position:relative;isolation:isolate}
-  .glass.reveal{transition:opacity .9s ease,transform .9s cubic-bezier(.2,.7,.2,1),scale .4s ease}
+  /* ---------- Cards ---------- */
+  .tiles{display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:16px}
+  .card{position:relative;isolation:isolate;border-radius:16px;background:var(--glass-in);border:1px solid var(--stroke);
+    backdrop-filter:blur(14px);-webkit-backdrop-filter:blur(14px);
+    box-shadow:0 8px 24px rgba(15,18,24,.08),inset 0 1px 0 rgba(255,255,255,.9);transition:translate .3s ease}
+  .card:hover{translate:0 -8px}
+
+  /* Fleet */
+  .fcard{padding:18px;display:flex;flex-direction:column;gap:10px}
+  .fcard.sel{border:1.5px solid var(--gold);background:rgba(255,250,236,.7)}
+  .ftop{display:flex;justify-content:space-between;align-items:center;color:#7b8494;font-size:1.05rem}
+  .ftag{font-size:.56rem;font-weight:700;letter-spacing:.1em;text-transform:uppercase;padding:4px 9px;border-radius:5px;color:var(--gold-d);background:var(--gold-soft)}
+  .fcard.sel .ftag{background:var(--gold);color:#fff}
+  .fcard h3{font-size:1.45rem}
+  .seats{display:flex;align-items:center;gap:6px;font-size:.64rem;font-weight:700;color:#c2410c;letter-spacing:.04em}
+  .shot{position:relative;aspect-ratio:16/10;border-radius:10px;overflow:hidden;
+    background:radial-gradient(120% 90% at 70% 10%,#34425c 0%,#161c28 55%,#0b0e14 100%);display:grid;place-items:center;border:1px solid rgba(255,255,255,.4)}
+  .shot::after{content:"";position:absolute;left:0;right:0;bottom:0;height:28%;background:linear-gradient(0deg,rgba(255,200,90,.16),transparent)}
+  .shot img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;z-index:2}
+  .shot .car-art{width:84%;height:auto;z-index:1}
+  .fcard p{font-size:.74rem;color:var(--muted);flex:1}
+  .selbtn{display:flex;align-items:center;justify-content:center;gap:8px;padding:11px;border-radius:8px;border:1px solid rgba(15,18,24,.1);
+    background:rgba(255,255,255,.6);color:#3b4350;font-size:.64rem;font-weight:700;letter-spacing:.1em;text-transform:uppercase;transition:background .2s,color .2s}
+  .selbtn:hover{background:#fff}
+  .fcard.sel .selbtn{background:var(--gold);color:#fff;border-color:var(--gold)}
+
+  /* Divider */
+  .divider{max-width:1180px;margin:0 auto clamp(36px,6vw,64px);display:flex;align-items:center;gap:16px;font-size:.58rem;font-weight:700;letter-spacing:.16em;text-transform:uppercase;color:#3b4350}
+  .divider::before,.divider::after{content:"";flex:1;height:1px}
+  .divider::before{background:linear-gradient(90deg,transparent,var(--gold))}
+  .divider::after{background:linear-gradient(90deg,#3a8dde,transparent)}
+  .divider span{display:flex;align-items:center;gap:8px;padding:7px 14px;border-radius:999px;background:var(--glass);border:1px solid var(--stroke);backdrop-filter:blur(14px);-webkit-backdrop-filter:blur(14px)}
+  .divider .ic{color:var(--gold)}
+
+  /* Services */
+  .scard{padding:20px;display:flex;flex-direction:column;gap:10px;min-height:210px}
+  .sico{width:38px;height:38px;border-radius:10px;display:grid;place-items:center;font-size:1.05rem;background:var(--gold-soft);color:var(--gold-d)}
+  .scard:nth-child(2) .sico{background:rgba(58,141,222,.14);color:#2b72bd}
+  .scard:nth-child(3) .sico{background:rgba(255,160,40,.16);color:#b86a00}
+  .scard:nth-child(4) .sico{background:rgba(138,92,255,.14);color:#6b45d6}
+  .scard h3{font-size:1.1rem;margin-top:6px}
+  .scard p{font-size:.74rem;color:var(--muted);flex:1}
+  .sfoot{display:flex;justify-content:space-between;align-items:center;padding-top:12px;border-top:1px solid rgba(15,18,24,.08);font-size:.56rem;font-weight:700;letter-spacing:.1em;text-transform:uppercase;color:#5b6472}
+
+  /* Why */
+  .why{display:grid;grid-template-columns:1.05fr 1fr;gap:clamp(20px,4vw,48px);align-items:center}
+  .why h2{font-size:clamp(2rem,4.8vw,3.2rem);margin-bottom:16px}
+  .why p{color:var(--muted);font-size:.86rem;max-width:46ch}
+  .checks{display:flex;gap:18px;flex-wrap:wrap;margin:18px 0}
+  .checks span{display:flex;align-items:center;gap:7px;font-size:.6rem;font-weight:700;letter-spacing:.08em;text-transform:uppercase}
+  .checks .ic{color:#12a064;font-size:1.05rem}
+  .dispatch{display:flex;align-items:center;gap:12px;padding:14px 16px;border-radius:12px;background:var(--glass-in);border:1px solid var(--stroke);max-width:420px}
+  .dispatch .sico{width:32px;height:32px}
+  .dispatch small{display:block;font-size:.5rem;font-weight:700;letter-spacing:.12em;text-transform:uppercase;color:var(--muted)}
+  .dispatch b{font-size:.86rem}
+  .stats{display:grid;gap:14px}
+  .stat{display:flex;align-items:center;gap:16px;padding:18px 20px}
+  .stat .sico{width:42px;height:42px;font-size:1.15rem}
+  .stat .big{font-size:1.9rem}
+  .stat small{display:block;color:var(--muted);font-size:.7rem;margin-top:4px}
+  .stat .ghost{margin-left:auto;font-size:1.5rem;color:var(--gold);opacity:.35}
+
+  /* Footer */
+  footer{max-width:1180px;margin:0 auto 90px;padding:0 clamp(14px,3vw,36px)}
+  .foot{border-radius:var(--radius);padding:22px clamp(20px,3vw,34px);background:var(--glass);border:1px solid var(--stroke);
+    backdrop-filter:blur(22px) saturate(180%);-webkit-backdrop-filter:blur(22px) saturate(180%);box-shadow:0 14px 40px rgba(15,18,24,.12)}
+  .foot-top,.foot-bot{display:flex;justify-content:space-between;align-items:center;gap:14px;flex-wrap:wrap}
+  .foot-top{padding-bottom:16px;border-bottom:1px solid rgba(15,18,24,.08)}
+  .foot-bot{padding-top:14px;font-size:.66rem;color:var(--muted)}
+  .foot-bot nav{gap:18px}
+  .foot-bot a{color:var(--muted);text-decoration:none}
+  .foot-bot a:hover{color:var(--gold-d)}
+  .chips{display:flex;gap:10px;align-items:center;flex-wrap:wrap}
+  .chip{display:inline-flex;align-items:center;gap:7px;padding:6px 12px;border-radius:999px;font-size:.54rem;font-weight:700;letter-spacing:.1em;text-transform:uppercase;background:rgba(255,255,255,.6);border:1px solid var(--stroke);color:#5b6472}
+  .chip.gold{color:var(--gold-d);background:var(--gold-soft)}
+  .chip.green{color:#0f6b46;background:rgba(18,160,100,.12)}
+  .chip.green::before{content:"";width:6px;height:6px;border-radius:50%;background:#12a064}
+
+  .fab{position:fixed;right:18px;bottom:18px;z-index:55;padding:14px 22px;border-radius:999px;border:0}
+
+
+  /* ---------- Intro animation ---------- */
+  body.locked{overflow:hidden}
+  .intro{position:fixed;inset:0;z-index:100;display:grid;place-items:center;cursor:pointer;
+    background:radial-gradient(120% 90% at 50% 40%,#ffffff 0%,#eef2f8 58%,#d9e1ee 100%);
+    clip-path:inset(0 0 0 0);transition:clip-path 1.05s cubic-bezier(.77,0,.18,1)}
+  .intro.out{clip-path:inset(0 0 100% 0)}
+  .intro.gone{display:none}
+  .intro::before{content:"";position:absolute;width:min(70vw,560px);aspect-ratio:1;border-radius:50%;
+    background:radial-gradient(circle,rgba(255,196,70,.5) 0%,rgba(255,196,70,0) 65%);
+    transform:scale(.3);opacity:0;animation:halo 2.2s .2s ease-out forwards}
+  .stage{position:relative;width:min(460px,80vw);display:grid;justify-items:center;gap:clamp(8px,2vw,14px)}
+  .stage img{display:block;width:100%;height:auto;user-select:none;-webkit-user-drag:none}
+  .i-emblem{clip-path:inset(100% 0 0 0);transform:scale(.92);filter:blur(6px);animation:emblem 1.5s .25s cubic-bezier(.2,.8,.2,1) forwards}
+  .i-name{clip-path:inset(0 100% 0 0);opacity:0;animation:wipe 1s 1.35s cubic-bezier(.6,0,.2,1) forwards}
+  .rule{width:62%;height:2px;background:linear-gradient(90deg,transparent,#b98a12,transparent);transform:scaleX(0);animation:grow .9s 2s ease forwards}
+  .i-trainwrap{position:relative;width:100%;display:grid;justify-items:center;overflow:visible}
+  .i-trainwrap .track{position:absolute;left:0;right:0;bottom:2px;height:2px;
+    background:repeating-linear-gradient(90deg,rgba(25,45,85,.35) 0 10px,transparent 10px 20px);transform:scaleX(0);transform-origin:left;animation:grow .9s 2.1s ease forwards}
+  .i-trainwrap img{width:64%;transform:translateX(-130vw);animation:drive 1.15s 2.15s cubic-bezier(.15,.7,.2,1) forwards}
+  .i-trainwrap::after{content:"";position:absolute;left:0;top:35%;width:34%;height:14px;opacity:0;
+    background:repeating-linear-gradient(0deg,rgba(25,45,85,.28) 0 2px,transparent 2px 6px);
+    -webkit-mask:linear-gradient(90deg,transparent,#000);mask:linear-gradient(90deg,transparent,#000);animation:streak 1.15s 2.15s ease-out forwards}
+  .i-bar{width:150px;height:3px;border-radius:3px;background:rgba(25,45,85,.12);overflow:hidden;margin-top:clamp(10px,3vw,22px)}
+  .i-bar i{display:block;height:100%;width:100%;background:linear-gradient(90deg,#b98a12,#e8b93c);transform:scaleX(0);transform-origin:left;animation:fill 3.4s .2s linear forwards}
+  .i-tag{font-size:.58rem;font-weight:700;letter-spacing:.24em;text-transform:uppercase;color:#4f5b70;opacity:0;animation:fadeIn .8s 2.6s ease forwards}
+  .i-skip{position:absolute;right:20px;bottom:20px;font-size:.6rem;font-weight:700;letter-spacing:.14em;text-transform:uppercase;color:#4f5b70;opacity:.7}
+  @keyframes emblem{to{clip-path:inset(0 0 0 0);transform:scale(1);filter:blur(0)}}
+  @keyframes wipe{to{clip-path:inset(0 0 0 0);opacity:1}}
+  @keyframes grow{to{transform:scaleX(1)}}
+  @keyframes drive{to{transform:translateX(0)}}
+  @keyframes streak{0%{opacity:0}30%{opacity:1}100%{opacity:0}}
+  @keyframes fill{to{transform:scaleX(1)}}
+  @keyframes halo{to{transform:scale(1);opacity:1}}
+  @keyframes fadeIn{to{opacity:1}}
+
+  /* Page entrance after the intro */
+  header{transition:background .3s,transform .9s cubic-bezier(.2,.8,.2,1)}
+  .hero-inner>*{transition:opacity .9s ease,transform .9s cubic-bezier(.2,.8,.2,1)}
+  .hero-inner>*:nth-child(2){transition-delay:.12s}
+  .hero-inner>*:nth-child(3){transition-delay:.24s}
+  .hero-inner>*:nth-child(4){transition-delay:.36s}
+  body.pre header{transform:translateY(-130%)}
+  body.pre .hero-inner>*{opacity:0;transform:translateY(28px)}
+
+  /* ---------- Float, rainbow border, reveal ---------- */
   @property --angle{syntax:"<angle>";inherits:false;initial-value:0deg}
   .glass::before,.card::before{
-    content:"";position:absolute;inset:0;z-index:-1;pointer-events:none;
-    border-radius:inherit;padding:3px;
+    content:"";position:absolute;inset:0;z-index:-1;pointer-events:none;border-radius:inherit;padding:2px;
     background:conic-gradient(from var(--angle),#ff4d3a,#ffb81f,#3ad6ff,#8a5cff,#ff4d9d,#ff4d3a);
     -webkit-mask:linear-gradient(#000 0 0) content-box,linear-gradient(#000 0 0);
     -webkit-mask-composite:xor;
     mask:linear-gradient(#000 0 0) content-box exclude,linear-gradient(#000 0 0);
-    opacity:0;transition:opacity .8s ease;
-    animation:spin 5s linear infinite;
-  }
-  .glass.in::before{opacity:1}
-  .glass.in{animation:floaty 6s ease-in-out infinite}
-  .glass.in:hover{scale:1.015}
-  @keyframes spin{to{--angle:360deg}}
-  @keyframes floaty{0%,100%{translate:0 0}50%{translate:0 -10px}}
-
-  /* Cards lift and glow in multiple colours on hover */
-  .card{position:relative;isolation:isolate;transition:translate .3s ease}
-  .card::before{padding:2px;transition:opacity .3s ease}
-  .card:hover{translate:0 -8px}
+    opacity:0;transition:opacity .6s ease;animation:spin 5s linear infinite}
+  .glass.in::before{opacity:.9}
   .card:hover::before{opacity:1}
-
-  footer{padding:36px 20px;text-align:center;font-size:.9rem;opacity:.7}
-
-  .reveal{opacity:0;transform:translateY(40px);transition:opacity .9s ease,transform .9s cubic-bezier(.2,.7,.2,1)}
+  .fcard.sel::before{opacity:0!important}
+  @keyframes spin{to{--angle:360deg}}
+  @keyframes floaty{0%,100%{translate:0 0}50%{translate:0 -8px}}
+  .glass.in{animation:floaty 6s ease-in-out infinite}
+  .glass.in:hover{scale:1.01}
+  .glass.reveal{transition:opacity .9s ease,transform .9s cubic-bezier(.2,.7,.2,1),scale .4s ease}
+  .reveal{opacity:0;transform:translateY(40px)}
   .reveal.in{opacity:1;transform:none}
 
-  @media (max-width:760px){
-    nav a:not(.btn){display:none}
-    .split,.row{grid-template-columns:1fr}
+  @media (max-width:900px){
+    .fields{grid-template-columns:1fr 1fr}
+    .row2{grid-template-columns:1fr}
+    .why{grid-template-columns:1fr}
+  }
+  @media (max-width:640px){
+    nav a.lnk{display:none}
+    .fields{grid-template-columns:1fr}
+    .avatar{display:none}
+    .hero{padding-top:120px}
   }
   @media (prefers-reduced-motion:reduce){
     html{scroll-behavior:auto}
     .reveal{opacity:1;transform:none;transition:none}
     .hero-inner{transform:none!important;opacity:1!important}
     .glass.in,.glass::before,.card::before{animation:none}
+    .intro{display:none}
   }
 </style>
 </head>
-<body>
+<body class="pre locked">
+<noscript><style>.intro{display:none}body.pre header{transform:none}body.pre .hero-inner>*{opacity:1;transform:none}body.locked{overflow:auto}</style></noscript>
 
-<!-- Road progress bar with a car that drives as you scroll -->
+<!-- Intro: logo pieces animate in, then the curtain lifts -->
+<div class="intro" id="intro" aria-label="Annapurna Tours, Travels &amp; Transport">
+  <div class="stage">
+    <img class="i-emblem" src="images/logo-emblem.png" alt="">
+    <img class="i-name" src="images/logo-name.png" alt="Annapurna Tours, Travels &amp; Transport">
+    <div class="rule"></div>
+    <div class="i-trainwrap"><span class="track"></span><img src="images/logo-train.png" alt=""></div>
+    <div class="i-bar"><i></i></div>
+    <div class="i-tag">Your journey begins</div>
+  </div>
+  <span class="i-skip">Tap to skip</span>
+</div>
+
+
+<!-- Icon + car sprites -->
+<svg width="0" height="0" style="position:absolute" aria-hidden="true">
+  <defs>
+    <linearGradient id="bodyg" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#dde3ec"/><stop offset="1" stop-color="#7a8494"/></linearGradient>
+    <symbol id="i-pin" viewBox="0 0 24 24"><path d="M20 10c0 6-8 12-8 12s-8-6-8-12a8 8 0 0 1 16 0Z"/><circle cx="12" cy="10" r="3"/></symbol>
+    <symbol id="i-nav" viewBox="0 0 24 24"><polygon points="3 11 22 2 13 21 11 13 3 11"/></symbol>
+    <symbol id="i-cal" viewBox="0 0 24 24"><rect x="3" y="4" width="18" height="18" rx="2"/><path d="M16 2v4M8 2v4M3 10h18"/></symbol>
+    <symbol id="i-down" viewBox="0 0 24 24"><path d="m6 9 6 6 6-6"/></symbol>
+    <symbol id="i-user" viewBox="0 0 24 24"><path d="M19 21v-2a4 4 0 0 0-4-4H9a4 4 0 0 0-4 4v2"/><circle cx="12" cy="7" r="4"/></symbol>
+    <symbol id="i-users" viewBox="0 0 24 24"><path d="M16 21v-2a4 4 0 0 0-4-4H6a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M22 21v-2a4 4 0 0 0-3-3.87M16 3.13a4 4 0 0 1 0 7.75"/></symbol>
+    <symbol id="i-msg" viewBox="0 0 24 24"><path d="M7.9 20A9 9 0 1 0 4 16.1L2 22Z"/></symbol>
+    <symbol id="i-truck" viewBox="0 0 24 24"><path d="M14 18V6a2 2 0 0 0-2-2H4a2 2 0 0 0-2 2v11a1 1 0 0 0 1 1h2M15 18H9M19 18h2a1 1 0 0 0 1-1v-3.65a1 1 0 0 0-.22-.62l-3.48-4.35A1 1 0 0 0 17.52 8H14"/><circle cx="17" cy="18" r="2"/><circle cx="7" cy="18" r="2"/></symbol>
+    <symbol id="i-car" viewBox="0 0 24 24"><path d="M19 17h2c.6 0 1-.4 1-1v-3c0-.9-.7-1.7-1.5-1.9C18.7 10.6 16 10 16 10s-1.3-1.4-2.2-2.3c-.5-.4-1.1-.7-1.8-.7H5c-.6 0-1.1.4-1.4.9l-1.4 2.9A3.7 3.7 0 0 0 2 12v4c0 .6.4 1 1 1h2"/><circle cx="7" cy="17" r="2"/><path d="M9 17h6"/><circle cx="17" cy="17" r="2"/></symbol>
+    <symbol id="i-mount" viewBox="0 0 24 24"><path d="m8 3 4 8 5-5 5 15H2L8 3z"/></symbol>
+    <symbol id="i-shield" viewBox="0 0 24 24"><path d="M20 13c0 5-3.5 7.5-7.66 8.95a1 1 0 0 1-.67-.01C7.5 20.5 4 18 4 13V6a1 1 0 0 1 1-1c2 0 4.5-1.2 6.24-2.72a1.17 1.17 0 0 1 1.52 0C14.51 3.81 17 5 19 5a1 1 0 0 1 1 1z"/><path d="m9 12 2 2 4-4"/></symbol>
+    <symbol id="i-clock" viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"/><path d="M12 6v6l4 2"/></symbol>
+    <symbol id="i-head" viewBox="0 0 24 24"><path d="M3 14h3a2 2 0 0 1 2 2v3a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-7a9 9 0 0 1 18 0v7a2 2 0 0 1-2 2h-1a2 2 0 0 1-2-2v-3a2 2 0 0 1 2-2h3"/></symbol>
+    <symbol id="i-plane" viewBox="0 0 24 24"><path d="M17.8 19.2 16 11l3.5-3.5C21 6 21.5 4 21 3c-1-.5-3 0-4.5 1.5L13 8 4.8 6.2c-.5-.1-.9.1-1.1.5l-.3.5c-.2.5-.1 1 .3 1.3L9 12l-2 3H4l-1 1 3 2 2 3 1-1v-3l3-2 3.5 5.3c.3.4.8.5 1.3.3l.5-.2c.4-.3.6-.7.5-1.2z"/></symbol>
+    <symbol id="i-map" viewBox="0 0 24 24"><path d="M14.1 5.55a2 2 0 0 0 1.79 0l3.66-1.83A1 1 0 0 1 21 4.62v12.76a1 1 0 0 1-.55.9l-4.55 2.27a2 2 0 0 1-1.79 0l-4.21-2.1a2 2 0 0 0-1.79 0l-3.66 1.83A1 1 0 0 1 3 19.38V6.62a1 1 0 0 1 .55-.9l4.55-2.27a2 2 0 0 1 1.79 0z"/><path d="M15 5.76v15M9 3.24v15"/></symbol>
+    <symbol id="i-spark" viewBox="0 0 24 24"><path d="m12 3-1.9 5.8a2 2 0 0 1-1.3 1.3L3 12l5.8 1.9a2 2 0 0 1 1.3 1.3L12 21l1.9-5.8a2 2 0 0 1 1.3-1.3L21 12l-5.8-1.9a2 2 0 0 1-1.3-1.3z"/></symbol>
+    <symbol id="i-route" viewBox="0 0 24 24"><circle cx="6" cy="19" r="3"/><path d="M9 19h8.5a3.5 3.5 0 0 0 0-7h-11a3.5 3.5 0 0 1 0-7H15"/><circle cx="18" cy="5" r="3"/></symbol>
+    <symbol id="i-check" viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"/><path d="m9 12 2 2 4-4"/></symbol>
+    <symbol id="i-gauge" viewBox="0 0 24 24"><path d="m12 14 4-4"/><path d="M3.34 19a10 10 0 1 1 17.32 0"/></symbol>
+    <symbol id="i-upr" viewBox="0 0 24 24"><path d="M7 7h10v10M7 17 17 7"/></symbol>
+    <symbol id="i-arr" viewBox="0 0 24 24"><path d="M5 12h14M12 5l7 7-7 7"/></symbol>
+    <symbol id="i-bill" viewBox="0 0 24 24"><path d="M4 2v20l2-1 2 1 2-1 2 1 2-1 2 1 2-1 2 1V2l-2 1-2-1-2 1-2-1-2 1-2-1-2 1Z"/><path d="M16 8h-6a2 2 0 1 0 0 4h4a2 2 0 1 1 0 4H8M12 17.5v-11"/></symbol>
+
+    <!-- Car illustrations (swap for real photos by adding images/*.jpg) -->
+    <symbol id="car-hatch" viewBox="0 0 200 100">
+      <ellipse cx="100" cy="86" rx="82" ry="5" fill="#000" opacity=".35"/>
+      <path d="M12 70V58Q12 52 20 50L60 26Q64 24 72 24H130Q140 24 146 30L162 46L184 52Q192 54 192 62V70Q192 74 188 74H14Q12 74 12 70Z" fill="url(#bodyg)"/>
+      <path d="M66 30L46 45H98V30ZM106 30V45H150L138 34Q134 30 128 30Z" fill="#141b27" opacity=".85"/>
+      <circle cx="52" cy="74" r="13" fill="#0a0d12"/><circle cx="52" cy="74" r="6" fill="#aab2bf"/>
+      <circle cx="150" cy="74" r="13" fill="#0a0d12"/><circle cx="150" cy="74" r="6" fill="#aab2bf"/>
+      <rect x="184" y="56" width="8" height="4" rx="2" fill="#ffd36b"/><rect x="12" y="56" width="5" height="4" rx="2" fill="#ff4d3a"/>
+    </symbol>
+    <symbol id="car-sedan" viewBox="0 0 200 100">
+      <ellipse cx="100" cy="86" rx="86" ry="5" fill="#000" opacity=".35"/>
+      <path d="M10 70V62Q10 54 20 52L52 46L72 28Q78 24 88 24H124Q134 24 142 30L160 46L184 52Q192 54 192 62V70Q192 74 188 74H12Q10 74 10 70Z" fill="url(#bodyg)"/>
+      <path d="M78 32L58 46H100V30H90Q82 30 78 32ZM108 30V46H152L138 34Q134 30 128 30Z" fill="#141b27" opacity=".85"/>
+      <circle cx="52" cy="74" r="13" fill="#0a0d12"/><circle cx="52" cy="74" r="6" fill="#aab2bf"/>
+      <circle cx="150" cy="74" r="13" fill="#0a0d12"/><circle cx="150" cy="74" r="6" fill="#aab2bf"/>
+      <rect x="184" y="56" width="8" height="4" rx="2" fill="#ffd36b"/><rect x="10" y="56" width="5" height="4" rx="2" fill="#ff4d3a"/>
+    </symbol>
+    <symbol id="car-suv" viewBox="0 0 200 100">
+      <ellipse cx="100" cy="88" rx="86" ry="5" fill="#000" opacity=".35"/>
+      <path d="M10 72V54Q10 48 18 46L34 44L48 22Q50 18 58 18H138Q146 18 152 26L164 42L186 48Q194 50 194 58V72Q194 76 190 76H14Q10 76 10 72Z" fill="url(#bodyg)"/>
+      <path d="M54 24L42 42H98V24ZM106 24V42H156L146 30Q142 24 136 24Z" fill="#141b27" opacity=".85"/>
+      <circle cx="50" cy="76" r="14" fill="#0a0d12"/><circle cx="50" cy="76" r="6.5" fill="#aab2bf"/>
+      <circle cx="152" cy="76" r="14" fill="#0a0d12"/><circle cx="152" cy="76" r="6.5" fill="#aab2bf"/>
+      <rect x="186" y="54" width="8" height="4" rx="2" fill="#ffd36b"/><rect x="10" y="54" width="5" height="4" rx="2" fill="#ff4d3a"/>
+    </symbol>
+    <symbol id="car-van" viewBox="0 0 200 100">
+      <ellipse cx="100" cy="88" rx="88" ry="5" fill="#000" opacity=".35"/>
+      <path d="M8 72V30Q8 22 18 22H132Q142 22 148 30L170 48Q184 50 190 58V72Q190 76 186 76H12Q8 76 8 72Z" fill="url(#bodyg)"/>
+      <path d="M20 30h26v18H20zM52 30h26v18H52zM84 30h26v18H84zM116 30h22v18h-22zM142 32l18 16h-18z" fill="#141b27" opacity=".85"/>
+      <circle cx="46" cy="76" r="13" fill="#0a0d12"/><circle cx="46" cy="76" r="6" fill="#aab2bf"/>
+      <circle cx="152" cy="76" r="13" fill="#0a0d12"/><circle cx="152" cy="76" r="6" fill="#aab2bf"/>
+      <rect x="182" y="56" width="8" height="4" rx="2" fill="#ffd36b"/><rect x="8" y="56" width="5" height="4" rx="2" fill="#ff4d3a"/>
+    </symbol>
+  </defs>
+</svg>
+
+<!-- Road progress: the car drives as you scroll -->
 <div class="road" aria-hidden="true">
   <svg class="car" id="car" viewBox="0 0 30 16" fill="none">
-    <path d="M2 12v-3l3-1 3-4h10l4 4 5 1v3z" fill="#ffb81f"/>
-    <circle cx="9" cy="12.5" r="2.5" fill="#14181d" stroke="#f4f1e8" stroke-width="1"/>
-    <circle cx="22" cy="12.5" r="2.5" fill="#14181d" stroke="#f4f1e8" stroke-width="1"/>
-    <path d="M10 5h4v3h-6zM15 5h3l2 3h-5z" fill="#14181d" opacity=".55"/>
+    <path d="M2 12v-3l3-1 3-4h10l4 4 5 1v3z" fill="#b98a12"/>
+    <circle cx="9" cy="12.5" r="2.5" fill="#0f1218" stroke="#fff" stroke-width="1"/>
+    <circle cx="22" cy="12.5" r="2.5" fill="#0f1218" stroke="#fff" stroke-width="1"/>
+    <path d="M10 5h4v3h-6zM15 5h3l2 3h-5z" fill="#0f1218" opacity=".5"/>
   </svg>
 </div>
 
@@ -151,100 +374,227 @@
 </div>
 
 <header id="top">
-  <a href="#hero" class="logo">ROAD<span>LINE</span></a>
+  <a href="#hero" class="logo"><img src="images/logo.png" alt="Annapurna Tours, Travels &amp; Transport"></a>
   <nav>
-    <a href="#fleet">Fleet</a>
-    <a href="#services">Services</a>
-    <a href="#why">Why us</a>
-    <a href="#book" class="btn">Book a ride</a>
+    <a class="lnk" href="#fleet">Fleet</a>
+    <a class="lnk" href="#services">Services</a>
+    <a class="lnk" href="#why">Why us</a>
+    <a class="lnk" href="#book">Rates</a>
+    <a class="lnk" href="#contact">Contact</a>
   </nav>
+  <div class="head-r">
+    <a href="#book" class="btn sm">Book a ride</a>
+    <span class="avatar"><svg class="ic"><use href="#i-user"/></svg></span>
+  </div>
 </header>
 
 <main>
   <section class="hero" id="hero">
     <div class="hero-inner" id="heroInner">
-      <h1>Your road.<br>Our wheels.</h1>
+      <span class="pill">Premium private chauffeurs &amp; outstation fleets</span>
+      <h1>Your road. <em>Our wheels.</em></h1>
       <p>Clean cars, trained drivers and fixed fares for airport drops, outstation trips and family tours.</p>
       <div class="actions">
-        <a href="#book" class="btn">Book a ride</a>
-        <a href="#fleet" class="btn ghost">See our cars</a>
+        <a href="#book" class="btn"><svg class="ic"><use href="#i-car"/></svg> Book a ride</a>
+        <a href="#fleet" class="btn glass-btn">See our cars <svg class="ic"><use href="#i-arr"/></svg></a>
       </div>
     </div>
-    <div class="hint">Scroll to start the trip</div>
+    <div class="hint">Scroll to start the trip<svg class="ic"><use href="#i-down"/></svg></div>
   </section>
 
+  <!-- Booking -->
+  <section class="panel" id="book">
+    <div class="glass reveal">
+      <div class="head-row">
+        <div>
+          <div class="eyebrow"><svg class="ic"><use href="#i-truck"/></svg> Fast dispatch engine</div>
+          <h2>Book your ride</h2>
+          <p class="sub">Fill this in and we'll confirm the fare on WhatsApp.</p>
+        </div>
+        <span class="badge"><svg class="ic"><use href="#i-shield"/></svg> Guaranteed Zero Surge Pricing</span>
+      </div>
+
+      <form id="bookForm">
+        <div class="fields">
+          <label><span><i class="dot" style="background:#f08a1c"></i>Pickup</span>
+            <span class="inp"><input name="from" required placeholder="Where from?"><svg class="ic"><use href="#i-pin"/></svg></span></label>
+          <label><span><i class="dot" style="background:#2b72bd"></i>Drop</span>
+            <span class="inp"><input name="to" required placeholder="Where to?"><svg class="ic"><use href="#i-nav"/></svg></span></label>
+          <label><span>Date</span>
+            <span class="inp"><input name="date" id="date" type="date" required></span></label>
+          <label><span>Car type</span>
+            <span class="inp"><select name="car" id="carSel">
+              <option value="Hatchback">Hatchback (4 seats · AC)</option>
+              <option value="Sedan" selected>Sedan (4 seats · AC · Large boot)</option>
+              <option value="SUV">SUV (6–7 seats · AC)</option>
+              <option value="Tempo Traveller">Tempo Traveller (12–17 seats · AC)</option>
+            </select><svg class="ic"><use href="#i-down"/></svg></span></label>
+        </div>
+        <div class="row2">
+          <label><span>Your name</span>
+            <span class="inp"><input name="name" required placeholder="Full name"><svg class="ic"><use href="#i-user"/></svg></span></label>
+          <button class="btn" type="submit"><svg class="ic"><use href="#i-msg"/></svg> Send on WhatsApp</button>
+        </div>
+        <p class="note"><svg class="ic"><use href="#i-clock"/></svg> Opens WhatsApp with your trip details filled in.</p>
+      </form>
+    </div>
+  </section>
+
+  <!-- Fleet -->
   <section class="panel" id="fleet">
     <div class="glass reveal">
-      <h2>Pick your ride</h2>
-      <p class="lead">Every car is serviced, cleaned and fuelled before it reaches you.</p>
-      <div class="grid">
-        <div class="card"><h3>Hatchback</h3><span class="meta">4 seats · AC</span><p>City rides and quick airport drops for one to three people.</p></div>
-        <div class="card"><h3>Sedan</h3><span class="meta">4 seats · AC · Large boot</span><p>Comfortable for business travel and long highway drives.</p></div>
-        <div class="card"><h3>SUV</h3><span class="meta">6–7 seats · AC</span><p>Room for the whole family and the luggage that comes with it.</p></div>
-        <div class="card"><h3>Tempo Traveller</h3><span class="meta">12–17 seats · AC</span><p>Group tours, weddings and temple trips, with a driver who knows the route.</p></div>
+      <div class="head-row">
+        <div>
+          <div class="eyebrow">Verified clean fleet</div>
+          <h2>Pick your ride</h2>
+          <p class="sub">Every car is serviced, cleaned and fuelled before it reaches you.</p>
+        </div>
+        <span class="badge green">All vehicles GPS monitored</span>
+      </div>
+
+      <div class="tiles">
+        <article class="card fcard" data-car="Hatchback">
+          <div class="ftop"><span class="ftag">City hopper</span><svg class="ic"><use href="#i-car"/></svg></div>
+          <h3>Hatchback</h3>
+          <div class="seats"><svg class="ic"><use href="#i-user"/></svg> 4 seats · AC</div>
+          <div class="shot"><svg class="car-art" viewBox="0 0 200 100"><use href="#car-hatch"/></svg><img src="images/hatchback.jpg" alt="Hatchback" onerror="this.remove()"></div>
+          <p>City rides and quick airport drops for one to three people.</p>
+          <button type="button" class="selbtn">Select Hatchback <svg class="ic"><use href="#i-upr"/></svg></button>
+        </article>
+        <article class="card fcard sel" data-car="Sedan">
+          <div class="ftop"><span class="ftag">Executive choice</span><svg class="ic"><use href="#i-truck"/></svg></div>
+          <h3>Sedan</h3>
+          <div class="seats"><svg class="ic"><use href="#i-user"/></svg> 4 seats · AC · Large boot</div>
+          <div class="shot"><svg class="car-art" viewBox="0 0 200 100"><use href="#car-sedan"/></svg><img src="images/sedan.jpg" alt="Sedan" onerror="this.remove()"></div>
+          <p>Comfortable for business travel and long highway drives.</p>
+          <button type="button" class="selbtn">Select Sedan <svg class="ic"><use href="#i-upr"/></svg></button>
+        </article>
+        <article class="card fcard" data-car="SUV">
+          <div class="ftop"><span class="ftag">Family comfort</span><svg class="ic"><use href="#i-mount"/></svg></div>
+          <h3>SUV</h3>
+          <div class="seats"><svg class="ic"><use href="#i-users"/></svg> 6–7 seats · AC</div>
+          <div class="shot"><svg class="car-art" viewBox="0 0 200 100"><use href="#car-suv"/></svg><img src="images/suv.jpg" alt="SUV" onerror="this.remove()"></div>
+          <p>Room for the whole family and the luggage that comes with it.</p>
+          <button type="button" class="selbtn">Select SUV <svg class="ic"><use href="#i-upr"/></svg></button>
+        </article>
+        <article class="card fcard" data-car="Tempo Traveller">
+          <div class="ftop"><span class="ftag">Group voyager</span><svg class="ic"><use href="#i-users"/></svg></div>
+          <h3>Tempo Traveller</h3>
+          <div class="seats"><svg class="ic"><use href="#i-users"/></svg> 12–17 seats · AC</div>
+          <div class="shot"><svg class="car-art" viewBox="0 0 200 100"><use href="#car-van"/></svg><img src="images/tempo.jpg" alt="Tempo Traveller" onerror="this.remove()"></div>
+          <p>Group tours, weddings and temple trips, with a driver who knows the route.</p>
+          <button type="button" class="selbtn">Select Tempo <svg class="ic"><use href="#i-upr"/></svg></button>
+        </article>
       </div>
     </div>
   </section>
 
+  <div class="divider"><span><svg class="ic"><use href="#i-route"/></svg> Express highway routing</span></div>
+
+  <!-- Services -->
   <section class="panel" id="services">
     <div class="glass reveal">
-      <h2>Where we take you</h2>
-      <div class="grid">
-        <div class="card"><h3>Outstation trips</h3><p>One-way or round trip to any city, with a fixed fare quoted before you go.</p></div>
-        <div class="card"><h3>Airport &amp; station</h3><p>On-time pickup and drop, including early-morning and late-night flights.</p></div>
-        <div class="card"><h3>Tour packages</h3><p>Multi-day trips planned around your stops, with the driver staying with you.</p></div>
-        <div class="card"><h3>Weddings &amp; events</h3><p>Decorated cars and group vehicles for guests, booked for the whole day.</p></div>
+      <div class="eyebrow">Destinations &amp; coverage</div>
+      <h2 style="margin-bottom:26px">Where we take you</h2>
+      <div class="tiles">
+        <article class="card scard">
+          <span class="sico"><svg class="ic"><use href="#i-route"/></svg></span>
+          <h3>Outstation trips</h3>
+          <p>One-way or round trip to any city, with a fixed fare quoted before you go.</p>
+          <div class="sfoot">All interstate routes <svg class="ic"><use href="#i-check"/></svg></div>
+        </article>
+        <article class="card scard">
+          <span class="sico"><svg class="ic"><use href="#i-plane"/></svg></span>
+          <h3>Airport &amp; station</h3>
+          <p>On-time pickup and drop, including early-morning and late-night flights.</p>
+          <div class="sfoot">Flight delay shield <svg class="ic"><use href="#i-clock"/></svg></div>
+        </article>
+        <article class="card scard">
+          <span class="sico"><svg class="ic"><use href="#i-map"/></svg></span>
+          <h3>Tour packages</h3>
+          <p>Multi-day trips planned around your stops, with the driver staying with you.</p>
+          <div class="sfoot">Custom itinerary <svg class="ic"><use href="#i-gauge"/></svg></div>
+        </article>
+        <article class="card scard">
+          <span class="sico"><svg class="ic"><use href="#i-spark"/></svg></span>
+          <h3>Weddings &amp; events</h3>
+          <p>Decorated cars and group vehicles for guests, booked for the whole day.</p>
+          <div class="sfoot">Event convoy support <svg class="ic"><use href="#i-users"/></svg></div>
+        </article>
       </div>
     </div>
   </section>
 
+  <!-- Why us -->
   <section class="panel" id="why">
     <div class="glass reveal">
-      <div class="split">
+      <div class="why">
         <div>
-          <h2>Travel without the worry</h2>
-          <p class="lead">You get a driver who knows the road, a car that's ready on time and a price that doesn't change on the way. Tolls, parking and driver allowance are listed up front.</p>
+          <div class="eyebrow">Uncompromised standard</div>
+          <h2>Travel without<br>the worry</h2>
+          <p>You get a driver who knows the road, a car that's ready on time and a price that doesn't change on the way. Tolls, parking and driver allowance are listed up front.</p>
+          <div class="checks">
+            <span><svg class="ic"><use href="#i-check"/></svg> Zero hidden fees</span>
+            <span><svg class="ic"><use href="#i-check"/></svg> Sanitized cabins</span>
+          </div>
+          <div class="dispatch">
+            <span class="sico"><svg class="ic"><use href="#i-gauge"/></svg></span>
+            <div><small>Average dispatch time</small><b>Under 18 Mins Across Major Hubs</b></div>
+          </div>
         </div>
         <div class="stats">
-          <div class="stat"><b>24/7</b>Bookings and support</div>
-          <div class="stat"><b>Fixed fares</b>Quoted before you travel</div>
-          <div class="stat"><b>Verified drivers</b>Trained and background-checked</div>
+          <div class="card stat"><span class="sico"><svg class="ic"><use href="#i-head"/></svg></span>
+            <div><div class="big">24/7</div><small>Bookings and support</small></div><svg class="ic ghost"><use href="#i-clock"/></svg></div>
+          <div class="card stat"><span class="sico"><svg class="ic"><use href="#i-bill"/></svg></span>
+            <div><div class="big">Fixed fares</div><small>Quoted before you travel</small></div><svg class="ic ghost"><use href="#i-bill"/></svg></div>
+          <div class="card stat"><span class="sico"><svg class="ic"><use href="#i-shield"/></svg></span>
+            <div><div class="big">Verified drivers</div><small>Trained and background-checked</small></div><svg class="ic ghost"><use href="#i-shield"/></svg></div>
         </div>
       </div>
-    </div>
-  </section>
-
-  <section class="panel" id="book">
-    <div class="glass reveal" style="max-width:760px">
-      <h2>Book your ride</h2>
-      <p class="lead" style="margin-bottom:24px">Fill this in and we'll confirm the fare on WhatsApp.</p>
-      <form id="bookForm">
-        <div class="row">
-          <label>Pickup<input name="from" required placeholder="Where from?"></label>
-          <label>Drop<input name="to" required placeholder="Where to?"></label>
-        </div>
-        <div class="row">
-          <label>Date<input name="date" type="date" required></label>
-          <label>Car type
-            <select name="car">
-              <option>Hatchback</option><option>Sedan</option><option>SUV</option><option>Tempo Traveller</option>
-            </select>
-          </label>
-        </div>
-        <label>Your name<input name="name" required placeholder="Full name"></label>
-        <button class="btn" type="submit">Send on WhatsApp</button>
-        <p class="note">Opens WhatsApp with your trip details filled in.</p>
-      </form>
     </div>
   </section>
 </main>
 
-<footer>&copy; 2026 Roadline Car Travels. All rights reserved.</footer>
+<footer id="contact">
+  <div class="foot">
+    <div class="foot-top">
+      <div class="chips"><a href="#hero" class="logo"><img src="images/logo.png" alt="Annapurna Tours, Travels &amp; Transport"></a><span class="chip">Fleet services</span></div>
+      <div class="chips">
+        <span class="chip green">24/7 Road dispatch active</span>
+        <span class="chip gold"><svg class="ic"><use href="#i-msg"/></svg> WhatsApp support</span>
+      </div>
+    </div>
+    <div class="foot-bot">
+      <span>&copy; 2026 Annapurna Tours, Travels &amp; Transport. All rights reserved.</span>
+      <nav><a href="#fleet">Fleet</a><a href="#services">Services</a><a href="#book">Rates</a><a href="#">Privacy &amp; Terms</a></nav>
+    </div>
+  </div>
+</footer>
+
+<button class="btn fab" id="fab" type="button"><svg class="ic"><use href="#i-msg"/></svg> Instant WhatsApp fare</button>
 
 <script>
 (function(){
   // Replace with your WhatsApp number: country code + number, no + or spaces (e.g. 919876543210)
   var WHATSAPP_NUMBER = "919999999999";
+
+  // Intro sequence
+  var intro = document.getElementById('intro');
+  var introDone = false;
+  function endIntro(){
+    if (introDone) return; introDone = true;
+    intro.classList.add('out');
+    document.body.classList.remove('pre');
+    document.body.classList.remove('locked');
+    setTimeout(function(){ intro.classList.add('gone'); }, 1200);
+  }
+  if (window.matchMedia('(prefers-reduced-motion: reduce)').matches){
+    intro.classList.add('gone'); document.body.classList.remove('pre','locked'); introDone = true;
+  } else {
+    setTimeout(endIntro, 3900);
+    intro.addEventListener('click', endIntro);
+    document.addEventListener('keydown', endIntro, {once:true});
+  }
 
   var root = document.documentElement;
   var reduce = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
@@ -262,17 +612,14 @@
     var y = window.scrollY, vh = window.innerHeight;
     var max = document.documentElement.scrollHeight - vh;
     var pct = max > 0 ? Math.min(y / max, 1) : 0;
-
     root.style.setProperty('--car', (pct * (window.innerWidth - 30)) + 'px');
     header.classList.toggle('solid', y > 40);
-
     if (!reduce){
       var t = Math.min(y / vh, 1);
-      root.style.setProperty('--hy', (-t * 80) + 'px');
-      root.style.setProperty('--hs', (1 - t * 0.12).toFixed(3));
+      root.style.setProperty('--hy', (-t * 70) + 'px');
+      root.style.setProperty('--hs', (1 - t * 0.1).toFixed(3));
       root.style.setProperty('--ho', (1 - t * 1.3).toFixed(3));
       root.style.setProperty('--zoom', (1 + pct * 0.12).toFixed(3));
-      root.style.setProperty('--shade', (0.8 + t * 0.2).toFixed(3));
     }
     ticking = false;
   }
@@ -282,19 +629,39 @@
 
   var io = new IntersectionObserver(function(entries){
     entries.forEach(function(e){ if(e.isIntersecting){ e.target.classList.add('in'); io.unobserve(e.target); } });
-  }, {threshold:.12});
+  }, {threshold:.1});
   document.querySelectorAll('.reveal').forEach(function(el){ io.observe(el); });
+
+  // Today's date as default
+  document.getElementById('date').value = new Date().toLocaleDateString('en-CA');
+
+  // Fleet card <-> car type select
+  var sel = document.getElementById('carSel');
+  var cards = document.querySelectorAll('.fcard');
+  function mark(val){ cards.forEach(function(c){ c.classList.toggle('sel', c.dataset.car === val); }); }
+  cards.forEach(function(c){
+    c.querySelector('.selbtn').addEventListener('click', function(){
+      sel.value = c.dataset.car; mark(c.dataset.car);
+      document.getElementById('book').scrollIntoView({behavior: reduce ? 'auto' : 'smooth', block:'center'});
+    });
+  });
+  sel.addEventListener('change', function(){ mark(sel.value); });
+
+  function openWA(text){ window.open('https://wa.me/' + WHATSAPP_NUMBER + '?text=' + encodeURIComponent(text), '_blank'); }
 
   document.getElementById('bookForm').addEventListener('submit', function(e){
     e.preventDefault();
-    var f = e.target;
-    var msg = 'Hi, I want to book a ride.\n' +
-      'Name: ' + f.name.value + '\n' +
-      'Pickup: ' + f.from.value + '\n' +
-      'Drop: ' + f.to.value + '\n' +
-      'Date: ' + f.date.value + '\n' +
-      'Car: ' + f.car.value;
-    window.open('https://wa.me/' + WHATSAPP_NUMBER + '?text=' + encodeURIComponent(msg), '_blank');
+    var d = new FormData(e.target);
+    openWA('Hi Annapurna Tours, I want to book a ride.\n' +
+      'Name: ' + d.get('name') + '\n' +
+      'Pickup: ' + d.get('from') + '\n' +
+      'Drop: ' + d.get('to') + '\n' +
+      'Date: ' + d.get('date') + '\n' +
+      'Car: ' + d.get('car'));
+  });
+
+  document.getElementById('fab').addEventListener('click', function(){
+    openWA('Hi Annapurna Tours, I need an instant fare quote for a ride.');
   });
 })();
 </script>
